@@ -11,13 +11,13 @@ function M.new( options )
 	local image = options.image
 	local max = options.max or 3
 	local spacing = options.spacing or 8
-	local width, height = options.width or 64, options.height or 64
+	local w, h = options.width or 64, options.height or 64
 
 	-- Create display group to hold visuals
 	local group = display.newGroup()
 	local hearts = {}
 	for i = 1, max do
-		hearts[i] = display.newImageRect( "scenes/game/img/heart.png", width, height )
+		hearts[i] = display.newImageRect( "scenes/game/img/heart.png", w, h )
 		hearts[i].x = (i - 1) * ( ( w / 2 ) + spacing )
 		hearts[i].y = 0
 		group:insert( hearts[i] )

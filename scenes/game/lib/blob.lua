@@ -23,7 +23,7 @@ function M.new( instance )
 
 	function instance:die()
 		audio.play( sounds.squish )
-		
+
 		self.isFixedRotation = false
 		self.isSensor = true
 		self:applyLinearImpulse( 0, -100 )
@@ -44,7 +44,9 @@ function M.new( instance )
 	end
 
 	local max, direction, flip, timeout, idle = 200, 750, -0.133, 0, 0
+	
 	direction = direction * ( ( instance.xScale < 0 ) and 1 or -1 )
+	
 	flip = flip * ( ( instance.xScale < 0 ) and 1 or -1 )
 
 	local function enterFrame()

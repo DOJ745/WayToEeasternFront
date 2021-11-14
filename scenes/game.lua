@@ -28,9 +28,9 @@ function scene:create( event )
 		--sword = audio.loadSound( sndDir .. "sword.mp3" ),
 		--squish = audio.loadSound( sndDir .. "squish.mp3" ),
 
-		bark = audio.loadSound(sndDir, "bark.mp3");
-		meow = audio.loadSound(sndDir, "meow.mp3");
-		enemyDeath = audio.loadSound(sndDir, "enemyDeath.mp3");
+		bark = audio.loadSound(sndDir .. "bark.mp3");
+		meow = audio.loadSound(sndDir .. "meow.mp3");
+		enemyDeath = audio.loadSound(sndDir .. "enemyDeath.mp3");
 		--slime = audio.loadSound( sndDir .. "slime.mp3" ),
 		--wind = audio.loadSound( sndDir .. "loops/spacewind.mp3" ),
 		door = audio.loadSound( sndDir .. "door.mp3" ),
@@ -49,7 +49,7 @@ function scene:create( event )
 	physics.setGravity( 0, 32 )
 
 	-- Load our map
-	local filename = event.params.map or "scenes/game/levels/sandbox.json"
+	local filename = event.params.map or "scenes/game/levels/level0.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
 	map = tiled.new( mapData, "scenes/game/levels" )
 	--map.xScale, map.yScale = 0.85, 0.85
@@ -68,7 +68,7 @@ function scene:create( event )
 	parallax = map:findLayer( "parallax" )
 
 	-- Add our scoring module
-	local coin = display.newImageRect( sceneGroup, "scenes/games/img/coin.png", 64, 64 )
+	local coin = display.newImageRect( sceneGroup, "scenes/game/img/coin.png", 64, 64 )
 
 	coin.x = display.contentWidth - coin.contentWidth / 2 - 24
 	coin.y = display.screenOriginY + coin.contentHeight / 2 + 20

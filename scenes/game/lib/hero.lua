@@ -22,7 +22,7 @@ function M.new( instance, options )
 	local x, y = instance.x, instance.y
 
 	-- Load spritesheet
-	local sheetData = { width = 130, height = 170, numFrames = 17, sheetContentWidth = 2380, sheetContentHeight = 170 }
+	local sheetData = { width = 150, height = 170, numFrames = 17, sheetContentWidth = 2380, sheetContentHeight = 170 }
 	local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
 	local sequenceData = {
 		{ name = "idle", frames = { 1 } },
@@ -35,12 +35,13 @@ function M.new( instance, options )
 	instance:setSequence( "idle" )
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 54, density = 3, bounce = 0, friction =  1.0 } )
+	physics.addBody( instance, "dynamic", { radius = 45, density = 3, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
 	instance.anchorY = 0.77
 
 	-- Keyboard control
 	local max, acceleration, left, right, flip = 375, 5000, 0, 0, 0
+
 	local lastEvent = {}
 	local function key( event )
 		local phase = event.phase
@@ -67,6 +68,7 @@ function M.new( instance, options )
 		elseif phase == "up" then
 			if "left" == name or "a" == name then left = 0 end
 			if "right" == name or "d" == name then right = 0 end
+
 			if left == 0 and right == 0 and not instance.jumping then
 				instance:setSequence("idle")
 			end
@@ -89,7 +91,7 @@ function M.new( instance, options )
 
 			-- We died
 			fx.fadeOut( function()
-				composer.gotoScene( "scene.refresh", { params = { map = self.filename } } )
+				composer.gotoScene( "scenes.refresh", { params = { map = self.filename } } )
 			end, 1500, 1000 )
 
 			instance.isDead = true
