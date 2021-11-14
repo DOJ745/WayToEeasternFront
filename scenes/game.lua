@@ -5,8 +5,9 @@ local fx = require( "com.ponywolf.ponyfx" )
 local tiled = require( "com.ponywolf.ponytiled" )
 local physics = require( "physics" )
 local json = require( "json" )
-local scoring = require( "scene.game.lib.score" )
-local heartBar = require( "scene.game.lib.heartBar" )
+
+local scoring = require( "scenes.game.lib.score" )
+local heartBar = require( "scenes.game.lib.heartBar" )
 
 -- Variables local to scene
 local map, hero, shield, parallax
@@ -20,20 +21,27 @@ function scene:create( event )
 	local sceneGroup = self.view  -- Add scene display objects to this group
 
 	-- Sounds
-	local sndDir = "scene/game/sfx/"
+	local sndDir = "scenes/game/sfx/"
 	scene.sounds = {
-		thud = audio.loadSound( sndDir .. "thud.mp3" ),
-		sword = audio.loadSound( sndDir .. "sword.mp3" ),
-		squish = audio.loadSound( sndDir .. "squish.mp3" ),
-		slime = audio.loadSound( sndDir .. "slime.mp3" ),
-		wind = audio.loadSound( sndDir .. "loops/spacewind.mp3" ),
+
+		--thud = audio.loadSound( sndDir .. "thud.mp3" ),
+		--sword = audio.loadSound( sndDir .. "sword.mp3" ),
+		--squish = audio.loadSound( sndDir .. "squish.mp3" ),
+
+		bark = audio.loadSound(sndDir, "bark.mp3");
+		meow = audio.loadSound(sndDir, "meow.mp3");
+		enemyDeath = audio.loadSound(sndDir, "enemyDeath.mp3");
+		--slime = audio.loadSound( sndDir .. "slime.mp3" ),
+		--wind = audio.loadSound( sndDir .. "loops/spacewind.mp3" ),
 		door = audio.loadSound( sndDir .. "door.mp3" ),
+
 		hurt = {
 			audio.loadSound( sndDir .. "hurt1.mp3" ),
 			audio.loadSound( sndDir .. "hurt2.mp3" ),
 		},
+
 		hit = audio.loadSound( sndDir .. "hit.mp3" ),
-		coin = audio.loadSound( sndDir .. "coin.mp3" ),
+		coin = audio.loadSound( sndDir .. "coin.wav" ),
 	}
 
 	-- Start physics before loading map
@@ -41,9 +49,9 @@ function scene:create( event )
 	physics.setGravity( 0, 32 )
 
 	-- Load our map
-	local filename = event.params.map or "scene/game/map/sandbox.json"
+	local filename = event.params.map or "scenes/game/levels/sandbox.json"
 	local mapData = json.decodeFile( system.pathForFile( filename, system.ResourceDirectory ) )
-	map = tiled.new( mapData, "scene/game/map" )
+	map = tiled.new( mapData, "scenes/game/levels" )
 	--map.xScale, map.yScale = 0.85, 0.85
 
 	-- Find our hero!
