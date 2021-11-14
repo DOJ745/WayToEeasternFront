@@ -6,7 +6,7 @@ local tiled = require( "com.ponywolf.ponytiled" )
 local json = require( "json" )
 
 -- Variables local to scene
-local ui, bgMusic, start
+local ui, backgroundMusic, start
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -28,36 +28,37 @@ function scene:create( event )
 	local sceneGroup = self.view  -- Add scene display objects to this group
 
 	-- stream music
-	bgMusic = audio.loadStream( "scene/menu/sfx/titletheme.mp3" )
+	background= audio.loadStream( "scenes/main_menu/sfx/main_menu_music.mp3" )
 
 	-- Load our UI
-	local uiData = json.decodeFile( system.pathForFile( "scene/menu/ui/title.json", system.ResourceDirectory ) )
-	ui = tiled.new( uiData, "scene/menu/ui" )
+	local uiData = json.decodeFile( system.pathForFile( "scenes/main_menu/main_menu.json", system.ResourceDirectory ) )
+	ui = tiled.new( uiData, "scenes/main_menu/ui" )
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth/2, display.contentCenterY - ui.designedHeight/2
 
 	-- Find the start button
 	start = ui:findObject( "start" )
 	function start:tap()
 		fx.fadeOut( function()
-				composer.gotoScene( "scene.game", { params = {} } )
+				composer.gotoScene( "scenes.game", { params = {} } )
 			end )
 	end
 	fx.breath( start )
 
-	-- Find the help button
-	local help = ui:findObject( "help" )
-	function help:tap()
-		ui:findLayer( "help" ).isVisible = not ui:findLayer( "help" ).isVisible
+	-- Find the exit button
+	local exit = ui:findObject( "exit" )
+	function exit:tap()
+		--ui:findLayer( "help" ).isVisible = not ui:findLayer( "help" ).isVisible
+		native.requestExit()
 	end
-	help:addEventListener( "tap" )
+	exit:addEventListener( "tap" )
 
 	-- Transtion in logo
-	transition.from( ui:findObject( "logo" ), { xScale = 2.5, yScale = 2.5, time = 333, transition = easing.outQuad } )
+	transition.from( ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 333, transition = easing.outQuad } )
 
 	-- Add streaks
-	local streaks = fx.newStreak()
-	streaks.x, streaks.y = ui:findObject( "logo" ):localToContent( -10, 0 )
-	ui:findLayer( "clouds" ):insert( streaks )
+	--local streaks = fx.newStreak()
+	--streaks.x, streaks.y = ui:findObject( "title" ):localToContent( -10, 0 )
+	--ui:findLayer( "clouds" ):insert( streaks )
 
 	sceneGroup:insert( ui )
 
@@ -82,7 +83,7 @@ function scene:show( event )
 	elseif ( phase == "did" ) then
 		start:addEventListener( "tap" )
 		timer.performWithDelay( 10, function()
-			audio.play( bgMusic, { loops = -1, channel = 1 } )
+			audio.play( backgroundMusic { loops = -1, channel = 1 } )
 			audio.fade({ channel = 1, time = 333, volume = 1.0 } )
 		end)	
 	end
@@ -103,7 +104,7 @@ end
 -- This function is called when scene is destroyed
 function scene:destroy( event )
 	audio.stop()  -- Stop all audio
-	audio.dispose( bgMusic )  -- Release music handle
+	audio.dispose( backroundMusic)  -- Release music handle
 	Runtime:removeEventListener("key", key)
 end
 
