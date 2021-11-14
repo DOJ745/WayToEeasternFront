@@ -23,6 +23,7 @@ function M.new( instance )
 
 	function instance:die()
 		audio.play( sounds.squish )
+		
 		self.isFixedRotation = false
 		self.isSensor = true
 		self:applyLinearImpulse( 0, -100 )
