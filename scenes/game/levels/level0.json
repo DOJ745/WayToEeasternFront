@@ -1,4 +1,5 @@
-{ "compressionlevel":-1,
+{ "backgroundcolor":"#7782ad",
+ "compressionlevel":-1,
  "height":45,
  "infinite":false,
  "layers":[
@@ -42,18 +43,6 @@
          "id":6,
          "name":"game",
          "objects":[
-                {
-                 "gid":5,
-                 "height":160,
-                 "id":17,
-                 "name":"hero",
-                 "rotation":0,
-                 "type":"hero",
-                 "visible":true,
-                 "width":130,
-                 "x":146.833333333333,
-                 "y":964.666666666667
-                }, 
                 {
                  "gid":15,
                  "height":73,
@@ -113,6 +102,18 @@
                  "width":64,
                  "x":1920,
                  "y":927
+                }, 
+                {
+                 "gid":17,
+                 "height":160,
+                 "id":42,
+                 "name":"hero",
+                 "rotation":0,
+                 "type":"hero",
+                 "visible":true,
+                 "width":130,
+                 "x":155.5,
+                 "y":964
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -560,7 +561,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":42,
+ "nextobjectid":43,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
@@ -604,12 +605,6 @@
                  "image":"coin.png",
                  "imageheight":64,
                  "imagewidth":64
-                }, 
-                {
-                 "id":4,
-                 "image":"Hero.png",
-                 "imageheight":160,
-                 "imagewidth":130
                 }, 
                 {
                  "id":5,
@@ -670,6 +665,12 @@
                  "image":"testGround.png",
                  "imageheight":100,
                  "imagewidth":400
+                }, 
+                {
+                 "id":16,
+                 "image":"Hero.png",
+                 "imageheight":160,
+                 "imagewidth":130
                 }],
          "tilewidth":512
         }],

@@ -22,8 +22,10 @@ function M.new( instance, options )
 	local x, y = instance.x, instance.y
 
 	-- Load spritesheet
-	local sheetData = { width = 140, height = 160, numFrames = 17, sheetContentWidth = 2380, sheetContentHeight = 170 }
-	local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
+	--local sheetData = { width = 140, height = 160, numFrames = 17, sheetContentWidth = 2380, sheetContentHeight = 170 }
+	--local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
+	local sheetData = { width = 130, height = 160, numFrames = 17, sheetContentWidth = 2210, sheetContentHeight = 160 }
+	local sheet = graphics.newImageSheet( "scenes/game/img/spritesheet.png", sheetData )
 	local sequenceData = {
 		{ name = "idle", frames = { 1 } },
 		--{ name = "walk", frames = { 2, 3, 4, 5 }, time = 333, loopCount = 0 },
@@ -36,7 +38,7 @@ function M.new( instance, options )
 	instance:setSequence( "idle" )
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 52, density = 3, bounce = 0, friction =  1.05 } )
+	physics.addBody( instance, "dynamic", { radius = 37, density = 5, bounce = 0, friction =  1.05 } )
 	instance.isFixedRotation = true
 	instance.anchorY = 0.77
 
