@@ -65,7 +65,6 @@ function scene:create( event )
 	-- Find the exit button
 	local exit = ui:findObject( "exit" )
 	function exit:tap()
-		--ui:findLayer( "help" ).isVisible = not ui:findLayer( "help" ).isVisible
 		native.requestExit()
 	end
 	exit:addEventListener( "tap" )
@@ -73,11 +72,6 @@ function scene:create( event )
 
 	-- Transtion in logo
 	transition.from( ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 1333, transition = easing.outQuad } )
-
-	-- Add streaks
-	--local streaks = fx.newStreak()
-	--streaks.x, streaks.y = ui:findObject( "title" ):localToContent( -10, 0 )
-	--ui:findLayer( "clouds" ):insert( streaks )
 
 	sceneGroup:insert( ui )
 
