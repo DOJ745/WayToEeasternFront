@@ -22,8 +22,8 @@ function M.new( instance, options )
 	local x, y = instance.x, instance.y
 
 	-- Load spritesheet
-	local sheetData = { width = 192, height = 256, numFrames = 79, sheetContentWidth = 1920, sheetContentHeight = 2048 }
-	local sheet = graphics.newImageSheet( "scene/game/img/sprites.png", sheetData )
+	local sheetData = { width = 130, height = 160, numFrames = 79, sheetContentWidth = 2380, sheetContentHeight = 170 }
+	local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
 	local sequenceData = {
 		{ name = "idle", frames = { 1 } },
 		{ name = "walk", frames = { 2, 3, 4, 5 }, time = 333, loopCount = 0 },
@@ -46,6 +46,7 @@ function M.new( instance, options )
 		local phase = event.phase
 		local name = event.keyName
 		if ( phase == lastEvent.phase ) and ( name == lastEvent.keyName ) then return false end  -- Filter repeating keys
+
 		if phase == "down" then
 			if "left" == name or "a" == name then
 				left = -acceleration
@@ -57,10 +58,12 @@ function M.new( instance, options )
 			elseif "space" == name or "buttonA" == name or "button1" == name then
 				instance:jump()
 			end
+
 			if not ( left == 0 and right == 0 ) and not instance.jumping then
 				instance:setSequence( "walk" )
 				instance:play()
 			end
+
 		elseif phase == "up" then
 			if "left" == name or "a" == name then left = 0 end
 			if "right" == name or "d" == name then right = 0 end
@@ -83,13 +86,16 @@ function M.new( instance, options )
 		fx.flash( self )
 		audio.play( sounds.hurt[math.random(2)] )
 		if self.shield:damage() <= 0 then
+
 			-- We died
 			fx.fadeOut( function()
 				composer.gotoScene( "scene.refresh", { params = { map = self.filename } } )
 			end, 1500, 1000 )
+
 			instance.isDead = true
 			instance.isSensor = true
 			self:applyLinearImpulse( 0, -500 )
+
 			-- Death animation
 			instance:setSequence( "ouch" )
 			self.xScale = 1
@@ -102,8 +108,9 @@ function M.new( instance, options )
 	function instance:collision( event )
 		local phase = event.phase
 		local other = event.other
-		local y1, y2 = self.y + 50, other.y - ( other.type == "enemy" and 25 or other.height/2 )
+		local y1, y2 = self.y + 50, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
 		local vx, vy = self:getLinearVelocity()
+
 		if phase == "began" then
 			if not self.isDead and ( other.type == "blob" or other.type == "enemy" ) then
 				if y1 < y2 then
