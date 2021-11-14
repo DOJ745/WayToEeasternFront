@@ -51,8 +51,8 @@
                  "type":"hero",
                  "visible":true,
                  "width":130,
-                 "x":170.333333333333,
-                 "y":948.666666666667
+                 "x":179.333333333333,
+                 "y":970.666666666667
                 }, 
                 {
                  "gid":15,
@@ -101,6 +101,18 @@
                  "width":62,
                  "x":757.5,
                  "y":967.5
+                }, 
+                {
+                 "gid":4,
+                 "height":64,
+                 "id":33,
+                 "name":"",
+                 "rotation":0,
+                 "type":"coin",
+                 "visible":true,
+                 "width":64,
+                 "x":1920,
+                 "y":927
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -172,18 +184,6 @@
                  "width":160.75,
                  "x":1431,
                  "y":974
-                }, 
-                {
-                 "gid":4,
-                 "height":64,
-                 "id":33,
-                 "name":"",
-                 "rotation":0,
-                 "type":"coin",
-                 "visible":true,
-                 "width":64,
-                 "x":1920,
-                 "y":927
                 }, 
                 {
                  "gid":2,

@@ -22,10 +22,11 @@ function M.new( instance, options )
 	local x, y = instance.x, instance.y
 
 	-- Load spritesheet
-	local sheetData = { width = 150, height = 170, numFrames = 17, sheetContentWidth = 2380, sheetContentHeight = 170 }
+	local sheetData = { width = 140, height = 160, numFrames = 17, sheetContentWidth = 2380, sheetContentHeight = 170 }
 	local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
 	local sequenceData = {
 		{ name = "idle", frames = { 1 } },
+		--{ name = "walk", frames = { 2, 3, 4, 5 }, time = 333, loopCount = 0 },
 		{ name = "walk", frames = { 2, 3, 4, 5 }, time = 333, loopCount = 0 },
 		{ name = "jump", frames = { 6 } },
 		{ name = "ouch", frames = { 7 } },
@@ -35,12 +36,13 @@ function M.new( instance, options )
 	instance:setSequence( "idle" )
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 45, density = 3, bounce = 0, friction =  1.0 } )
+	physics.addBody( instance, "dynamic", { radius = 52, density = 3, bounce = 0, friction =  1.05 } )
 	instance.isFixedRotation = true
 	instance.anchorY = 0.77
 
 	-- Keyboard control
-	local max, acceleration, left, right, flip = 375, 5000, 0, 0, 0
+	--local max, acceleration, left, right, flip = 375, 5000, 0, 0, 0
+	local max, acceleration, left, right, flip = 275, 3000, 0, 0, 0
 
 	local lastEvent = {}
 	local function key( event )
@@ -110,7 +112,9 @@ function M.new( instance, options )
 	function instance:collision( event )
 		local phase = event.phase
 		local other = event.other
+
 		local y1, y2 = self.y + 50, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
+		--local y1, y2 = self.y + 20, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
 		local vx, vy = self:getLinearVelocity()
 
 		if phase == "began" then
@@ -137,7 +141,7 @@ function M.new( instance, options )
 
 	function instance:preCollision( event )
 		local other = event.other
-		local y1, y2 = self.y + 50, other.y - other.height/2
+		local y1, y2 = self.y + 50, other.y - other.height / 2
 		if event.contact and ( y1 > y2 ) then
 			-- Don't bump into one way platforms
 			if other.floating then
@@ -152,6 +156,7 @@ function M.new( instance, options )
 		-- Do this every frame
 		local vx, vy = instance:getLinearVelocity()
 		local dx = left + right
+
 		if instance.jumping then dx = dx / 4 end
 		if ( dx < 0 and vx > -max ) or ( dx > 0 and vx < max ) then
 			instance:applyForce( dx or 0, 0, instance.x, instance.y )
