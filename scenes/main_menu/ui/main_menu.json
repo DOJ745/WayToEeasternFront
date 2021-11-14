@@ -67,8 +67,8 @@
                  "type":"",
                  "visible":true,
                  "width":522,
-                 "x":15,
-                 "y":510
+                 "x":-69,
+                 "y":479
                 }, 
                 {
                  "gid":7,
@@ -103,8 +103,8 @@
                  "type":"",
                  "visible":true,
                  "width":556,
-                 "x":647.333333333333,
-                 "y":540
+                 "x":761.333333333333,
+                 "y":600
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -119,63 +119,63 @@
          "objects":[
                 {
                  "gid":11,
-                 "height":68,
+                 "height":64.7070707070707,
                  "id":17,
                  "name":"exit",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":198,
-                 "x":510.333333333334,
-                 "y":815.333333333333
+                 "width":188.411764705882,
+                 "x":533.666666666667,
+                 "y":802.333333333333
                 }, 
                 {
                  "gid":2,
-                 "height":68,
+                 "height":70.5185185185185,
                  "id":18,
                  "name":"start",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":198,
-                 "x":513,
-                 "y":614
+                 "width":205.333333333333,
+                 "x":522.333333333333,
+                 "y":494.333333333334
                 }, 
                 {
                  "gid":12,
-                 "height":68,
+                 "height":64.3636363636363,
                  "id":20,
                  "name":"chooseLevel",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":198,
-                 "x":510.333333333333,
-                 "y":720.666666666667
+                 "width":187.411764705882,
+                 "x":532,
+                 "y":693.333333333333
                 }, 
                 {
                  "gid":13,
-                 "height":100,
+                 "height":82,
                  "id":21,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":270,
-                 "x":206.333333333333,
-                 "y":739.333333333333
+                 "width":221.4,
+                 "x":221.333333333333,
+                 "y":721.333333333333
                 }, 
                 {
                  "gid":14,
-                 "height":94,
+                 "height":68,
                  "id":22,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":285,
-                 "x":752.666666666667,
-                 "y":735
+                 "width":206.170212765957,
+                 "x":818.666666666667,
+                 "y":708
                 }, 
                 {
                  "gid":15,
@@ -188,6 +188,18 @@
                  "width":296,
                  "x":906.666666666667,
                  "y":59.3333333333333
+                }, 
+                {
+                 "gid":16,
+                 "height":67.3737373737374,
+                 "id":24,
+                 "name":"records",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":196.176470588235,
+                 "x":525.666666666667,
+                 "y":594.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -219,7 +231,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":24,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
@@ -237,7 +249,7 @@
          "margin":0,
          "name":"ui",
          "spacing":0,
-         "tilecount":14,
+         "tilecount":15,
          "tileheight":199,
          "tiles":[
                 {
@@ -323,6 +335,12 @@
                  "image":"quote8.png",
                  "imageheight":19,
                  "imagewidth":296
+                }, 
+                {
+                 "id":15,
+                 "image":"recordsButton.png",
+                 "imageheight":68,
+                 "imagewidth":198
                 }],
          "tilewidth":556
         }],

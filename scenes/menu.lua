@@ -44,6 +44,15 @@ function scene:create( event )
 	end
 	fx.breath(start)
 
+	-- Find the records button
+	records = ui:findObject( "records" )
+	function records:tap()
+		fx.fadeOut( function()
+				composer.gotoScene( "scenes.game", { params = {} } )
+			end )
+	end
+	fx.breath(records)
+
 	--Find the choose level button
 	chooseLevel = ui:findObject( "chooseLevel" )
 	function chooseLevel:tap()
