@@ -10,7 +10,7 @@ local scoring = require( "scenes.game.lib.score" )
 local heartBar = require( "scenes.game.lib.heartBar" )
 
 -- Variables local to scene
-local map, hero, shield, parallax
+local map, hero, heart, parallax
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -55,46 +55,48 @@ function scene:create( event )
 	--map.xScale, map.yScale = 0.85, 0.85
 
 	-- Find our hero!
-	map.extensions = "scene.game.lib."
+	map.extensions = "scenes.game.lib."
 	map:extend( "hero" )
 	hero = map:findObject( "hero" )
 	hero.filename = filename
 
 	-- Find our enemies and other items
 	map:extend( "blob", "enemy", "exit", "coin", "spikes" )
+	--map:extend("animal", "enemy", "coin", "spikes", "exit")
 
 	-- Find the parallax layer
 	parallax = map:findLayer( "parallax" )
 
 	-- Add our scoring module
-	local gem = display.newImageRect( sceneGroup, "scene/game/img/gem.png", 64, 64 )
-	gem.x = display.contentWidth - gem.contentWidth / 2 - 24
-	gem.y = display.screenOriginY + gem.contentHeight / 2 + 20
+	local coin = display.newImageRect( sceneGroup, "scenes/games/img/coin.png", 64, 64 )
+
+	coin.x = display.contentWidth - coin.contentWidth / 2 - 24
+	coin.y = display.screenOriginY + coin.contentHeight / 2 + 20
 
 	scene.score = scoring.new( { score = event.params.score } )
 	local score = scene.score
-	score.x = display.contentWidth - score.contentWidth / 2 - 32 - gem.width
+	score.x = display.contentWidth - score.contentWidth / 2 - 32 - coin.width
 	score.y = display.screenOriginY + score.contentHeight / 2 + 16
 
 	-- Add our hearts module
-	shield = heartBar.new()
-	shield.x = 48
-	shield.y = display.screenOriginY + shield.contentHeight / 2 + 16
-	hero.shield = shield
+	heart = heartBar.new()
+	heart.x = 48
+	heart.y = display.screenOriginY + heart.contentHeight / 2 + 16
+	hero.heart = heart
 
 	-- Touch the sheilds to go back to the main...
-	function shield:tap(event)
+	function heart:tap(event)
 		fx.fadeOut( function()
-				composer.gotoScene( "scene.menu")
+				composer.gotoScene( "scenes.menu")
 			end )
 	end
-	shield:addEventListener("tap")
+	heart:addEventListener("tap")
 
 	-- Insert our game items in the correct back-to-front order
 	sceneGroup:insert( map )
 	sceneGroup:insert( score )
-	sceneGroup:insert( gem )
-	sceneGroup:insert( shield )
+	sceneGroup:insert( coin )
+	sceneGroup:insert( heart )
 
 end
 
@@ -108,6 +110,7 @@ local function enterFrame( event )
 		local x, y = hero:localToContent( 0, 0 )
 		x, y = display.contentCenterX - x, display.contentCenterY - y
 		map.x, map.y = map.x + x, map.y + y
+
 		-- Easy parallax
 		if parallax then
 			parallax.x, parallax.y = map.x / 6, map.y / 8  -- Affects x more than y

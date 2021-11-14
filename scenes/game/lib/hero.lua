@@ -22,7 +22,7 @@ function M.new( instance, options )
 	local x, y = instance.x, instance.y
 
 	-- Load spritesheet
-	local sheetData = { width = 130, height = 160, numFrames = 79, sheetContentWidth = 2380, sheetContentHeight = 170 }
+	local sheetData = { width = 130, height = 170, numFrames = 17, sheetContentWidth = 2380, sheetContentHeight = 170 }
 	local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
 	local sequenceData = {
 		{ name = "idle", frames = { 1 } },
