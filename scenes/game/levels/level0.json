@@ -51,8 +51,8 @@
                  "type":"hero",
                  "visible":true,
                  "width":130,
-                 "x":179.333333333333,
-                 "y":970.666666666667
+                 "x":146.833333333333,
+                 "y":964.666666666667
                 }, 
                 {
                  "gid":15,
@@ -252,8 +252,8 @@
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":259,
-                 "y":1096
+                 "x":-3.5,
+                 "y":991.5
                 }, 
                 {
                  "gid":14,
@@ -275,8 +275,8 @@
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":517.5,
-                 "y":1095
+                 "x":518.5,
+                 "y":1131.5
                 }, 
                 {
                  "gid":14,
@@ -461,6 +461,29 @@
                  "width":165,
                  "x":2528.5,
                  "y":1095
+                }, 
+                {
+                 "gid":16,
+                 "height":100,
+                 "id":41,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":400,
+                 "x":-124,
+                 "y":1064.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -537,7 +560,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":41,
+ "nextobjectid":42,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
@@ -555,7 +578,7 @@
          "margin":0,
          "name":"obj",
          "spacing":0,
-         "tilecount":14,
+         "tilecount":15,
          "tileheight":512,
          "tiles":[
                 {
@@ -641,6 +664,12 @@
                  "image":"flare.png",
                  "imageheight":192,
                  "imagewidth":192
+                }, 
+                {
+                 "id":15,
+                 "image":"testGround.png",
+                 "imageheight":100,
+                 "imagewidth":400
                 }],
          "tilewidth":512
         }],
