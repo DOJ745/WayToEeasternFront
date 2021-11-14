@@ -32,7 +32,7 @@ function scene:create( event )
 
 	-- Load our UI
 	local uiData = json.decodeFile( system.pathForFile( "scenes/main_menu/ui/main_menu.json", system.ResourceDirectory ) )
-	ui = tiled.new( uiData, "scenes/main_menu" )
+	ui = tiled.new( uiData, "scenes/main_menu/ui" )
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth / 2, display.contentCenterY - ui.designedHeight / 2
 
 	-- Find the start button
@@ -42,7 +42,16 @@ function scene:create( event )
 				composer.gotoScene( "scenes.game", { params = {} } )
 			end )
 	end
-	fx.breath( start )
+	fx.breath(start)
+
+	--Find the choose level button
+	chooseLevel = ui:findObject( "chooseLevel" )
+	function chooseLevel:tap()
+		fx.fadeOut( function()
+				composer.gotoScene( "scenes.game", { params = {} } )
+			end )
+	end
+	fx.breath(chooseLevel)
 
 	-- Find the exit button
 	local exit = ui:findObject( "exit" )
@@ -51,6 +60,7 @@ function scene:create( event )
 		native.requestExit()
 	end
 	exit:addEventListener( "tap" )
+	fx.breath(exit)
 
 	-- Transtion in logo
 	transition.from( ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 1333, transition = easing.outQuad } )

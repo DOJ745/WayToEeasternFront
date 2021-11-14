@@ -8,16 +8,16 @@
          "name":"backgroundColor",
          "objects":[
                 {
-                 "gid":7,
-                 "height":854.666666666667,
+                 "gid":4,
+                 "height":1048.66666666667,
                  "id":8,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1230.66666666667,
-                 "x":-9.33333333333331,
-                 "y":844
+                 "width":1722.66666666667,
+                 "x":-189.333333333333,
+                 "y":930
                 }, 
                 {
                  "height":19,
@@ -47,7 +47,7 @@
          "name":"quotes",
          "objects":[
                 {
-                 "gid":8,
+                 "gid":5,
                  "height":99,
                  "id":12,
                  "name":"",
@@ -55,11 +55,11 @@
                  "type":"",
                  "visible":true,
                  "width":436,
-                 "x":408.666666666667,
-                 "y":354
+                 "x":407.333333333334,
+                 "y":323.333333333333
                 }, 
                 {
-                 "gid":9,
+                 "gid":6,
                  "height":28,
                  "id":13,
                  "name":"",
@@ -71,19 +71,19 @@
                  "y":510
                 }, 
                 {
-                 "gid":10,
+                 "gid":7,
                  "height":70,
                  "id":14,
                  "name":"",
-                 "rotation":21,
+                 "rotation":19,
                  "type":"",
                  "visible":true,
                  "width":534,
-                 "x":663.666666666667,
-                 "y":76.3333333333333
+                 "x":671.666666666667,
+                 "y":109.666666666667
                 }, 
                 {
-                 "gid":11,
+                 "gid":8,
                  "height":99,
                  "id":15,
                  "name":"",
@@ -95,7 +95,7 @@
                  "y":283.333333333333
                 }, 
                 {
-                 "gid":12,
+                 "gid":9,
                  "height":199,
                  "id":16,
                  "name":"",
@@ -104,7 +104,7 @@
                  "visible":true,
                  "width":556,
                  "x":647.333333333333,
-                 "y":580
+                 "y":540
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -118,28 +118,76 @@
          "name":"buttons",
          "objects":[
                 {
-                 "gid":1,
+                 "gid":11,
                  "height":68,
-                 "id":1,
+                 "id":17,
                  "name":"exit",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":198,
-                 "x":510.056,
-                 "y":743.14
+                 "x":510.333333333334,
+                 "y":815.333333333333
                 }, 
                 {
                  "gid":2,
                  "height":68,
-                 "id":4,
+                 "id":18,
                  "name":"start",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":198,
-                 "x":511.667,
-                 "y":646
+                 "x":513,
+                 "y":614
+                }, 
+                {
+                 "gid":12,
+                 "height":68,
+                 "id":20,
+                 "name":"chooseLevel",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":198,
+                 "x":510.333333333333,
+                 "y":720.666666666667
+                }, 
+                {
+                 "gid":13,
+                 "height":100,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":270,
+                 "x":206.333333333333,
+                 "y":739.333333333333
+                }, 
+                {
+                 "gid":14,
+                 "height":94,
+                 "id":22,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":285,
+                 "x":752.666666666667,
+                 "y":735
+                }, 
+                {
+                 "gid":15,
+                 "height":19,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":296,
+                 "x":906.666666666667,
+                 "y":59.3333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -155,14 +203,14 @@
                 {
                  "gid":3,
                  "height":100,
-                 "id":3,
+                 "id":19,
                  "name":"title",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":300,
-                 "x":452,
-                 "y":196
+                 "x":446,
+                 "y":212.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -171,57 +219,15 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":17,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
-         "columns":1,
-         "firstgid":1,
-         "image":"ui\/exitButton.png",
-         "imageheight":68,
-         "imagewidth":198,
-         "margin":0,
-         "name":"exitButton",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":68,
-         "tilewidth":198,
-         "transparentcolor":"#ff00ff"
-        }, 
-        {
-         "columns":1,
-         "firstgid":2,
-         "image":"ui\/startButton.png",
-         "imageheight":68,
-         "imagewidth":198,
-         "margin":0,
-         "name":"startButton",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":68,
-         "tilewidth":198,
-         "transparentcolor":"#ff00ff"
-        }, 
-        {
-         "columns":1,
-         "firstgid":3,
-         "image":"ui\/title.png",
-         "imageheight":100,
-         "imagewidth":300,
-         "margin":0,
-         "name":"title",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":100,
-         "tilewidth":300,
-         "transparentcolor":"#ff00ff"
-        }, 
-        {
          "columns":0,
-         "firstgid":4,
+         "firstgid":1,
          "grid":
             {
              "height":1,
@@ -231,62 +237,92 @@
          "margin":0,
          "name":"ui",
          "spacing":0,
-         "tilecount":9,
+         "tilecount":14,
          "tileheight":199,
          "tiles":[
                 {
-                 "id":0,
-                 "image":"ui\/exitButton.png",
-                 "imageheight":68,
-                 "imagewidth":198
-                }, 
-                {
                  "id":1,
-                 "image":"ui\/startButton.png",
+                 "image":"startButton.png",
                  "imageheight":68,
                  "imagewidth":198
                 }, 
                 {
                  "id":2,
-                 "image":"ui\/title.png",
+                 "image":"title.png",
                  "imageheight":100,
                  "imagewidth":300
                 }, 
                 {
                  "id":3,
-                 "image":"ui\/backgroundColor.png",
+                 "image":"backgroundColor.png",
                  "imageheight":64,
                  "imagewidth":64
                 }, 
                 {
                  "id":4,
-                 "image":"ui\/quote.png",
+                 "image":"quote.png",
                  "imageheight":99,
                  "imagewidth":436
                 }, 
                 {
                  "id":5,
-                 "image":"ui\/quote2.png",
+                 "image":"quote2.png",
                  "imageheight":28,
                  "imagewidth":522
                 }, 
                 {
                  "id":6,
-                 "image":"ui\/quote3.png",
+                 "image":"quote3.png",
                  "imageheight":70,
                  "imagewidth":534
                 }, 
                 {
                  "id":7,
-                 "image":"ui\/quote4.png",
+                 "image":"quote4.png",
                  "imageheight":99,
                  "imagewidth":542
                 }, 
                 {
                  "id":8,
-                 "image":"ui\/quote5.png",
+                 "image":"quote5.png",
                  "imageheight":199,
                  "imagewidth":556
+                }, 
+                {
+                 "id":9,
+                 "image":"backgroundColor.png",
+                 "imageheight":64,
+                 "imagewidth":64
+                }, 
+                {
+                 "id":10,
+                 "image":"exitButton.png",
+                 "imageheight":68,
+                 "imagewidth":198
+                }, 
+                {
+                 "id":11,
+                 "image":"chooseLevelButton.png",
+                 "imageheight":68,
+                 "imagewidth":198
+                }, 
+                {
+                 "id":12,
+                 "image":"quote6.png",
+                 "imageheight":100,
+                 "imagewidth":270
+                }, 
+                {
+                 "id":13,
+                 "image":"quote7.png",
+                 "imageheight":94,
+                 "imagewidth":285
+                }, 
+                {
+                 "id":14,
+                 "image":"quote8.png",
+                 "imageheight":19,
+                 "imagewidth":296
                 }],
          "tilewidth":556
         }],
