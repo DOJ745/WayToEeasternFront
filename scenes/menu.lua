@@ -39,7 +39,7 @@ function scene:create( event )
 	start = ui:findObject( "start" )
 	function start:tap()
 		fx.fadeOut( function()
-				composer.gotoScene( "scenes.game", { params = {} } )
+				composer.gotoScene( "scenes.game", { params = { map = "scenes/game/levels/level0.json" } } )
 			end )
 	end
 	fx.breath(start)

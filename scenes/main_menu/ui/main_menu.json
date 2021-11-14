@@ -16,8 +16,8 @@
                  "type":"",
                  "visible":true,
                  "width":1722.66666666667,
-                 "x":-189.333333333333,
-                 "y":930
+                 "x":-177.333333333333,
+                 "y":927.333333333333
                 }, 
                 {
                  "height":19,
@@ -229,8 +229,30 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"levelsWindow",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":10,
+         "name":"recordsWindow",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
+ "nextlayerid":11,
  "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
