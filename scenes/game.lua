@@ -33,6 +33,9 @@ function scene:create( event )
 		enemyDeath = audio.loadSound(sndDir .. "enemyDeath.mp3");
 		--slime = audio.loadSound( sndDir .. "slime.mp3" ),
 		--wind = audio.loadSound( sndDir .. "loops/spacewind.mp3" ),
+		level0Music = audio.loadSound(sndDir .. "background/level0_music.mp3");
+		level1Music = audio.loadSound(sndDir .. "background/level1_music.mp3");
+		level2Music = audio.loadSound(sndDir .. "background/level2_music.mp3");
 		door = audio.loadSound( sndDir .. "door.mp3" ),
 
 		hurt = {
@@ -129,7 +132,8 @@ function scene:show( event )
 		-- Start playing wind sound
 		-- For more details on options to play a pre-loaded sound, see the Audio Usage/Functions guide:
 		-- https://docs.coronalabs.com/guide/media/audioSystem/index.html
-		audio.play( self.sounds.wind, { loops = -1, fadein = 750, channel = 15 } )
+		--audio.play( self.sounds.wind, { loops = -1, fadein = 750, channel = 15 } )
+		audio.play( self.sounds.level0Music, { loops = -1, fadein = 750, channel = 15 } )
 	end
 end
 

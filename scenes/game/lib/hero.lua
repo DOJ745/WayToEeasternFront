@@ -36,7 +36,7 @@ function M.new( instance, options )
 	instance:setSequence( "idle" )
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 37, density = 5, bounce = 0, friction =  1.05 } )
+	physics.addBody( instance, "dynamic", { radius = 37, density = 5.5, bounce = 0, friction =  1.05 } )
 	instance.isFixedRotation = true
 	instance.anchorY = 0.77
 
