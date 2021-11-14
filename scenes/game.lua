@@ -57,7 +57,7 @@ function scene:create( event )
 	map = tiled.new( mapData, "scenes/game/levels" )
 	--map.xScale, map.yScale = 0.85, 0.85
 
-	-- Find our hero!
+	-- Find our hero
 	map.extensions = "scenes.game.lib."
 	map:extend( "hero" )
 	hero = map:findObject( "hero" )
@@ -78,6 +78,7 @@ function scene:create( event )
 
 	scene.score = scoring.new( { score = event.params.score } )
 	local score = scene.score
+
 	score.x = display.contentWidth - score.contentWidth / 2 - 32 - coin.width
 	score.y = display.screenOriginY + score.contentHeight / 2 + 16
 
