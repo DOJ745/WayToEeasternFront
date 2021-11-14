@@ -30,7 +30,18 @@
                  "width":2526.66666666667,
                  "x":1.33333333333333,
                  "y":1441.33333333333
-                }, 
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"game",
+         "objects":[
                 {
                  "gid":5,
                  "height":160,
@@ -40,8 +51,8 @@
                  "type":"hero",
                  "visible":true,
                  "width":130,
-                 "x":128.333333333333,
-                 "y":1054.66666666667
+                 "x":164.333333333333,
+                 "y":963.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -59,120 +70,230 @@
                  "height":264,
                  "id":18,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":262,
-                 "y":1188
+                 "x":259,
+                 "y":1096
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":19,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":520.5,
-                 "y":1187
+                 "x":517.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":20,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":771.5,
-                 "y":1187
+                 "x":768.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":21,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":1022.5,
-                 "y":1187
+                 "x":1019.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":22,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":1272.5,
-                 "y":1187
+                 "x":1269.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":23,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":1525.5,
-                 "y":1187
+                 "x":1522.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":24,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":1779.5,
-                 "y":1187
+                 "x":1776.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":25,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":2027.5,
-                 "y":1187
+                 "x":2024.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":26,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":2277.5,
-                 "y":1187
+                 "x":2274.5,
+                 "y":1095
                 }, 
                 {
                  "gid":14,
                  "height":264,
                  "id":27,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
                  "rotation":-90,
                  "type":"",
                  "visible":true,
                  "width":165,
-                 "x":2531.5,
-                 "y":1187
+                 "x":2528.5,
+                 "y":1095
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -187,7 +308,7 @@
          "objects":[
                 {
                  "gid":13,
-                 "height":384,
+                 "height":478,
                  "id":4,
                  "name":"",
                  "rotation":0,
@@ -199,7 +320,7 @@
                 }, 
                 {
                  "gid":13,
-                 "height":384,
+                 "height":477,
                  "id":5,
                  "name":"",
                  "rotation":0,
@@ -248,7 +369,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
+ "nextlayerid":7,
  "nextobjectid":28,
  "orientation":"orthogonal",
  "renderorder":"right-down",
