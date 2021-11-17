@@ -189,8 +189,8 @@
                  "type":"",
                  "visible":true,
                  "width":400,
-                 "x":882,
-                 "y":842
+                 "x":880,
+                 "y":724
                 }, 
                 {
                  "gid":4,
@@ -302,8 +302,8 @@
                  "type":"enemySoldier",
                  "visible":true,
                  "width":130,
-                 "x":997,
-                 "y":736
+                 "x":1017,
+                 "y":620
                 }, 
                 {
                  "gid":19,

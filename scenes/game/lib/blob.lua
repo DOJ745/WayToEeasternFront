@@ -17,6 +17,7 @@ function M.new( instance )
 	-- Add physics
 	instance.anchorY = 1
 	physics.addBody(instance, "dynamic", { density = 1, bounce = 0, friction =  1.0 } )
+
 	instance.isFixedRotation = true
 	instance.angularDamping = 3
 	instance.isDead = false
@@ -40,7 +41,7 @@ function M.new( instance )
 
 	function instance:preCollision( event )
 		local other = event.other
-		local y1, y2 = self.y, other.y - other.height/2
+		local y1, y2 = self.y, other.y - other.height / 2
 		if event.contact and ( y1 > y2 ) then
 			-- Don't bump into one way platforms
 			if other.floating then
@@ -64,6 +65,7 @@ function M.new( instance )
 		local dx = direction
 		
 		if instance.jumping then dx = dx / 4 end
+
 		if ( dx < 0 and vx > -max ) or ( dx > 0 and vx < max ) then
 			instance:applyForce( dx or 0, 0, instance.x, instance.y )
 		end
@@ -79,7 +81,7 @@ function M.new( instance )
 
 		-- Breathe
 		idle = idle + 0.08
-		instance.yScale = 1 + ( 0.075 * math.sin( idle ) )
+		instance.yScale = 1 + ( 0.075 * math.sin(idle) )
 
 		-- Turn around
 		instance.xScale = math.min( 1, math.max( instance.xScale + flip, -1 ) )

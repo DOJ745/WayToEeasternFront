@@ -35,37 +35,44 @@ function M.new( instance, options )
 	instance:setSequence( "idle" )
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 37, density = 6, bounce = 0, friction =  1.0 } )
+	--physics.addBody( instance, "dynamic", { radius = 38, density = 6, bounce = 0, friction =  1.0 } )
+	physics.addBody( instance, "dynamic", { density = 1, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
-	instance.anchorY = 0.77
+	--instance.anchorY = 0.77
+	instance.anchorY = 0.51
 
 	-- Keyboard control
-	local max, acceleration, left, right, flip = 250, 850, 0, 0, 0
+	local max, acceleration, left, right, flip = 310, 1650, 0, 0, 0
 
 	local lastEvent = {}
+
 	local function key( event )
 		local phase = event.phase
 		local name = event.keyName
 		if ( phase == lastEvent.phase ) and ( name == lastEvent.keyName ) then return false end  -- Filter repeating keys
 
 		if phase == "down" then
+
 			if "left" == name or "a" == name then
 				left = -acceleration
 				flip = -0.133
 			end
+
 			if "right" == name or "d" == name then
 				right = acceleration
 				flip = 0.133
+
 			elseif "space" == name or "buttonA" == name or "button1" == name then
 				instance:jump()
 			end
 
-			if not ( left == 0 and right == 0 ) and not instance.jumping then
+			if not (left == 0 and right == 0) and not instance.jumping then
 				instance:setSequence("walk")
 				instance:play()
 			end
 
 		elseif phase == "up" then
+
 			if "left" == name or "a" == name then left = 0 end
 			if "right" == name or "d" == name then right = 0 end
 
@@ -85,17 +92,19 @@ function M.new( instance, options )
 	end
 
 	function instance:hurt()
+
 		fx.flash(self)
 		audio.play( sounds.hurt[math.random(2)] )
 		if self.heart:damage() <= 0 then
 
 			-- We died
 			fx.fadeOut( function()
-				composer.gotoScene( "scenes.refresh", { params = { map = self.filename } } )
+				composer.gotoScene( "scenes.menu", { params = { map = self.filename } } )
 			end, 1500, 1000 )
 
 			instance.isDead = true
 			instance.isSensor = true
+
 			self:applyLinearImpulse(0, -500)
 
 			-- Death animation
