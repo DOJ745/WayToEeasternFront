@@ -84,4 +84,4 @@ composer.gotoScene( "scenes.menu", { params = { } } )
 
 -- Or, instead of the line above, you can cheat skip to a specific level by using the
 -- following line, passing to it the JSON file of the level you want to jump to
--- composer.gotoScene( "scene.game", { params={ map="scenes/game/levels/level0.json" } } )
+-- composer.gotoScene( "scenes.game", { params={ map="scenes/game/levels/level0.json" } } )

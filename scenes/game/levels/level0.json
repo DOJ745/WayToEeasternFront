@@ -167,6 +167,12 @@
                  "height":210,
                  "id":28,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"map",
+                         "type":"string",
+                         "value":"scenes\/game\/levels\/level1.json"
+                        }],
                  "rotation":0,
                  "type":"exit",
                  "visible":true,

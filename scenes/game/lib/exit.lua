@@ -13,7 +13,8 @@ function M.new( instance )
 	if not instance then error( "ERROR: Expected display object" ) end
   
 	-- Get current scene and sounds
-	local scene = composer.getScene( composer.getSceneName( "current" ) )
+	local scene = composer.getScene( composer.getSceneName("current") )
+	print("CURRENT EXIT SCENE - ", composer.getSceneName("current"))
 	local sounds = scene.sounds
   
 	if not instance.bodyType then
@@ -28,12 +29,13 @@ function M.new( instance )
 			other.isDead = true
 			other.linearDamping = 8
 			audio.play( sounds.door )
+			
 			self.fill.effect = "filter.exposure"
 
 			transition.to( self.fill.effect, { time = 666, exposure = -5, onComplete = function()
 				fx.fadeOut( function()
-					--composer.gotoScene( "scenes.refresh", { params = { map = self.map, score = scene.score:get() } } )
-					composer.gotoScene( "scenes.refresh", { params = { map = "scenes/game/levels/level1.json", score = scene.score:get() } } )
+					print("SELF.MAP value - ", self.map)
+					composer.gotoScene( "scenes.refresh", { params = { map = self.map, score = scene.score:get() } } )
 				end )
 			end } )
 		end

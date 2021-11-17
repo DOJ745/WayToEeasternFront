@@ -14,7 +14,7 @@ local scene = composer.newScene()
 local function key(event)
 	-- go back to menu if we are not already there
 	if event.phase == "up" and event.keyName == "escape" then
-		if not (composer.getSceneName("current") == "scene.menu") then
+		if not (composer.getSceneName("current") == "scenes.menu") then
 			fx.fadeOut(function ()
 					composer.gotoScene("scenes.menu")
 				end)
