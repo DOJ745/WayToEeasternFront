@@ -1,4 +1,3 @@
-
 -- Extends an object to act like spikes
 
 -- Define module
@@ -15,11 +14,12 @@ function M.new( instance )
 	local sounds = scene.sounds
   
 	if not instance.bodyType then
-		physics.addBody( instance, "static", { isSensor = true } )
+		physics.addBody(instance, "static", { isSensor = true })
 	end
 
 	function instance:collision( event )
 		local phase, other = event.phase, event.other
+
 		if phase == "began" and other.name == "hero" and not other.isDead then
 			other:hurt()
 			other:setLinearVelocity( 0, 0 )

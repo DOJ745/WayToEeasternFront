@@ -57,8 +57,9 @@ function scene:create(event)
 	hero.filename = filename
 
 	-- Find scripts our enemies and other items
-	map:extend( "blob", "enemy", "exit", "coin", "spikes" )
+	--map:extend( "blob", "enemy", "exit", "coin", "spikes" )
 	--map:extend("animal", "enemy", "coin", "spikes", "exit")
+	map:extend("blob", "enemyOfficer", "enemySoldier", "exit", "coin", "spikes")
 
 	-- Find the parallax layer
 	--parallax = map:findLayer("parallax")
@@ -87,7 +88,7 @@ function scene:create(event)
 	local score = scene.score
 
 	-- Points positions
-	score.x = display.contentWidth - score.contentWidth / 2 - 32 - coin.width
+	score.x = display.contentWidth - score.contentWidth / 2 - 35 - coin.width
 	score.y = display.screenOriginY + score.contentHeight / 2 + 34
 
 	-- Add our hearts module

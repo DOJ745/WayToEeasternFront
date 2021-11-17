@@ -30,6 +30,7 @@ function M.new( options )
 
 	function score:add( points )
 		self.target = self.target + ( points or 10 )
+
 		local function countUp()
 			local diff = math.ceil( ( self.target - self.num ) / 12 )
 			self.num = self.num + diff
@@ -42,6 +43,7 @@ function M.new( options )
 
 			self.text = label .. " " .. ( self.num or 0 )
 		end
+		
 		if not self.timer then
 			self.timer = timer.performWithDelay( 30, countUp, -1 )
 		end

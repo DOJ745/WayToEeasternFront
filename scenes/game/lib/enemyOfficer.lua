@@ -1,6 +1,4 @@
-
--- Module/class for platformer enemy
--- Use this as a template to build an in-game enemy 
+-- Module/class for platformer enemyOfficer
 
 -- Define module
 local M = {}
@@ -21,8 +19,10 @@ function M.new( instance )
 	local x, y = instance.x, instance.y
 
 	-- Load spritesheet
-	local sheetData = { width = 192, height = 256, numFrames = 79, sheetContentWidth = 1920, sheetContentHeight = 2048 }
-	local sheet = graphics.newImageSheet( "scene/game/img/sprites.png", sheetData )
+	--local sheetData = { width = 192, height = 256, numFrames = 79, sheetContentWidth = 1920, sheetContentHeight = 2048 }
+	--local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
+	local sheetData = { width = 130, height = 160, numFrames = 17, sheetContentWidth = 2210, sheetContentHeight = 160 }
+	local sheet = graphics.newImageSheet( "scenes/game/img/spritesheet.png", sheetData )
 	local sequenceData = {
 		{ name = "idle", frames = { 21 } },
 		{ name = "walk", frames = { 22, 23, 24, 25 } , time = 500, loopCount = 0 },
@@ -49,7 +49,7 @@ function M.new( instance )
 
 	function instance:preCollision( event )
 		local other = event.other
-		local y1, y2 = self.y + 50, other.y - other.height/2
+		local y1, y2 = self.y + 50, other.y - other.height / 2
 		-- Also skip bumping into floating platforms
 		if event.contact and ( y1 > y2 ) then
 		if other.floating then
@@ -57,6 +57,7 @@ function M.new( instance )
 		else
 			event.contact.friction = 0.1
 		end
+
 		end
 	end
 

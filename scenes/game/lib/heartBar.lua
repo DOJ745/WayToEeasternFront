@@ -1,4 +1,3 @@
-
 -- Heart bar module
 
 -- Define module

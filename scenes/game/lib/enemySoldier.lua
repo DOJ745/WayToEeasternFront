@@ -1,6 +1,4 @@
-
--- Module/class for platfomer animal/blob
--- Use this as a template to build an in-game animal/blob
+-- Module/class for platformer enemy Soldier
 
 -- Define module
 local M = {}
@@ -8,45 +6,63 @@ local M = {}
 local composer = require( "composer" )
 
 function M.new( instance )
+
 	if not instance then error( "ERROR: Expected display object" ) end
 
 	-- Get scene and sounds
 	local scene = composer.getScene( composer.getSceneName( "current" ) )
 	local sounds = scene.sounds
 
+	-- Store map placement and hide placeholder
+	instance.isVisible = false
+	local parent = instance.parent
+	local x, y = instance.x, instance.y
+
+	-- Load spritesheet
+	--local sheetData = { width = 192, height = 256, numFrames = 79, sheetContentWidth = 1920, sheetContentHeight = 2048 }
+	--local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
+	local sheetData = { width = 130, height = 160, numFrames = 17, sheetContentWidth = 2210, sheetContentHeight = 160 }
+	local sheet = graphics.newImageSheet( "scenes/game/img/spritesheet.png", sheetData )
+	local sequenceData = {
+		{ name = "idle", frames = { 21 } },
+		{ name = "walk", frames = { 22, 23, 24, 25 } , time = 500, loopCount = 0 },
+	}
+	instance = display.newSprite( parent, sheet, sequenceData )
+	instance.x, instance.y = x, y
+	instance:setSequence( "walk" )
+	instance:play()
+
 	-- Add physics
-	instance.anchorY = 1
-	physics.addBody(instance, "dynamic", { density = 1, bounce = 0, friction =  1.0 } )
+	physics.addBody( instance, "dynamic", { radius = 54, density = 3, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
+	instance.anchorY = 0.77
 	instance.angularDamping = 3
 	instance.isDead = false
 
 	function instance:die()
-		audio.play( sounds.squish )
-
+		audio.play( sounds.sword )
 		self.isFixedRotation = false
 		self.isSensor = true
-		self:applyLinearImpulse( 0, -100 )
+		self:applyLinearImpulse( 0, -200 )
 		self.isDead = true
 	end
 
 	function instance:preCollision( event )
 		local other = event.other
-		local y1, y2 = self.y, other.y - other.height/2
+		local y1, y2 = self.y + 50, other.y - other.height / 2
+		-- Also skip bumping into floating platforms
 		if event.contact and ( y1 > y2 ) then
-			-- Don't bump into one way platforms
-			if other.floating then
-				event.contact.isEnabled = false
-			else
-				event.contact.friction = 0.1
-			end
+		if other.floating then
+			event.contact.isEnabled = false
+		else
+			event.contact.friction = 0.1
+		end
+
 		end
 	end
 
-	local max, direction, flip, timeout, idle = 200, 750, -0.133, 0, 0
-	
+	local max, direction, flip, timeout = 250, 5000, 0.133, 0
 	direction = direction * ( ( instance.xScale < 0 ) and 1 or -1 )
-	
 	flip = flip * ( ( instance.xScale < 0 ) and 1 or -1 )
 
 	local function enterFrame()
@@ -54,12 +70,11 @@ function M.new( instance )
 		-- Do this every frame
 		local vx, vy = instance:getLinearVelocity()
 		local dx = direction
-		
 		if instance.jumping then dx = dx / 4 end
 		if ( dx < 0 and vx > -max ) or ( dx > 0 and vx < max ) then
 			instance:applyForce( dx or 0, 0, instance.x, instance.y )
 		end
-
+		
 		-- Bumped
 		if math.abs( vx ) < 1 then
 			timeout = timeout + 1
@@ -68,10 +83,6 @@ function M.new( instance )
 				direction, flip = -direction, -flip
 			end
 		end
-
-		-- Breathe
-		idle = idle + 0.08
-		instance.yScale = 1 + ( 0.075 * math.sin( idle ) )
 
 		-- Turn around
 		instance.xScale = math.min( 1, math.max( instance.xScale + flip, -1 ) )
@@ -83,8 +94,8 @@ function M.new( instance )
 		instance = nil
 	end
 
-	-- Add a finalize listener (for display objects only; comment out for non-visual)
-	instance:addEventListener("finalize")
+	-- Add a finalize listener (for display objects only, comment out for non-visual)
+	instance:addEventListener( "finalize" )
 
 	-- Add our enterFrame listener
 	Runtime:addEventListener( "enterFrame", enterFrame )
@@ -93,6 +104,8 @@ function M.new( instance )
 	instance:addEventListener( "preCollision" )
 
 	-- Return instance
+	instance.name = "enemy"
+	instance.type = "enemy"
 	return instance
 end
 

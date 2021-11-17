@@ -1,4 +1,3 @@
-
 -- Health bar module
 
 -- Define module
@@ -10,14 +9,17 @@ function M.new( options )
 	options = options or {}
 	local x, y = options.x or 0, options.y or 0
 	local w,h = options.w or 192, options.h or 24
+
 	local foreground = options.foreground or { 0, 1, 0, 0.75 }
 	local background = options.foreground or { 1, 0, 0, 0.75 }
+	
 	local align = options.align or "right"
 	align = string.lower( align )
 
 	-- Create display group to hold visuals
 	local group = display.newGroup()
-	group.outline = display.newRect( group, x, y, w+8, h+8 )
+
+	group.outline = display.newRect( group, x, y, w + 8, h + 8 )
 	group.outline.alpha = 0.6
 	group.backgroundBar = display.newRect( group, x, y, w, h )
 	group.foregroundBar = display.newRect( group, x, y, w, h )
@@ -25,9 +27,11 @@ function M.new( options )
 	if align == "left" then
 		group.foregroundBar.anchorX = 0
 		group.foregroundBar:translate( -w * 0.5, 0 )
+
 	elseif align == "right" then
 		group.foregroundBar.anchorX = 1
 		group.foregroundBar:translate( w * 0.5, 0 )
+
 	elseif align == "center" then
 		-- Do nothing
 	end
