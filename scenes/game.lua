@@ -58,8 +58,8 @@ function scene:create(event)
 	hero.filename = filename
 
 	-- Find scripts our enemies and other items
+
 	--map:extend( "blob", "enemy", "exit", "coin", "spikes" )
-	--map:extend("animal", "enemy", "coin", "spikes", "exit")
 	map:extend("blob", "enemyOfficer", "enemySoldier", "exit", "coin", "spikes")
 
 	-- Find the parallax layer

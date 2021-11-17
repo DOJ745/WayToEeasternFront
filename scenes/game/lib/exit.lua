@@ -32,8 +32,8 @@ function M.new( instance )
 
 			transition.to( self.fill.effect, { time = 666, exposure = -5, onComplete = function()
 				fx.fadeOut( function()
-					composer.gotoScene( "scenes.refresh", { params = { map = self.map, score = scene.score:get() } } )
-					--composer.gotoScene( "scenes.refresh", { params = { map = "", score = scene.score:get() } } )
+					--composer.gotoScene( "scenes.refresh", { params = { map = self.map, score = scene.score:get() } } )
+					composer.gotoScene( "scenes.refresh", { params = { map = "scenes/game/levels/level1.json", score = scene.score:get() } } )
 				end )
 			end } )
 		end

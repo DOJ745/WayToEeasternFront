@@ -74,64 +74,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":4,
-         "name":"game",
-         "objects":[
-                {
-                 "gid":12,
-                 "height":160,
-                 "id":6,
-                 "name":"hero",
-                 "rotation":0,
-                 "type":"hero",
-                 "visible":true,
-                 "width":130,
-                 "x":274,
-                 "y":960.666666666667
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":3,
-         "name":"deco",
-         "objects":[
-                {
-                 "gid":10,
-                 "height":210,
-                 "id":4,
-                 "name":"",
-                 "rotation":0,
-                 "type":"exit",
-                 "visible":true,
-                 "width":180,
-                 "x":2602,
-                 "y":957
-                }, 
-                {
-                 "gid":11,
-                 "height":210,
-                 "id":5,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":180,
-                 "x":64.3333333333333,
-                 "y":964.333333333333
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":5,
          "name":"ground",
          "objects":[
@@ -239,11 +181,6 @@
                          "value":"static"
                         }, 
                         {
-                         "name":"floating",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"friction",
                          "type":"float",
                          "value":1
@@ -252,8 +189,8 @@
                  "type":"",
                  "visible":true,
                  "width":400,
-                 "x":748,
-                 "y":806
+                 "x":882,
+                 "y":842
                 }, 
                 {
                  "gid":4,
@@ -329,8 +266,8 @@
                  "type":"blob",
                  "visible":true,
                  "width":100,
-                 "x":988,
-                 "y":699.333333333333
+                 "x":1438,
+                 "y":821.333333333333
                 }, 
                 {
                  "gid":6,
@@ -347,20 +284,107 @@
                  "type":"blob",
                  "visible":true,
                  "width":110,
-                 "x":1398.66666666667,
-                 "y":962.666666666667
+                 "x":898.66666666667,
+                 "y":958.666666666667
                 }, 
                 {
                  "gid":9,
                  "height":160,
                  "id":24,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"soldier"
+                        }],
                  "rotation":0,
                  "type":"enemySoldier",
                  "visible":true,
                  "width":130,
-                 "x":2413,
-                 "y":956
+                 "x":997,
+                 "y":736
+                }, 
+                {
+                 "gid":19,
+                 "height":100,
+                 "id":25,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":400,
+                 "x":1422,
+                 "y":934
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":3,
+         "name":"deco",
+         "objects":[
+                {
+                 "gid":10,
+                 "height":210,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"exit",
+                 "visible":true,
+                 "width":180,
+                 "x":2602,
+                 "y":957
+                }, 
+                {
+                 "gid":11,
+                 "height":210,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":180,
+                 "x":64.3333333333333,
+                 "y":964.333333333333
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":4,
+         "name":"game",
+         "objects":[
+                {
+                 "gid":12,
+                 "height":160,
+                 "id":6,
+                 "name":"hero",
+                 "rotation":0,
+                 "type":"hero",
+                 "visible":true,
+                 "width":130,
+                 "x":274,
+                 "y":960.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -449,7 +473,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":25,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

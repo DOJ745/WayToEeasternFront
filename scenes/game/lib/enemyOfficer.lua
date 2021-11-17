@@ -19,13 +19,12 @@ function M.new( instance )
 	local x, y = instance.x, instance.y
 
 	-- Load spritesheet
-	--local sheetData = { width = 192, height = 256, numFrames = 79, sheetContentWidth = 1920, sheetContentHeight = 2048 }
-	--local sheet = graphics.newImageSheet( "scenes/game/img/sprites.png", sheetData )
 	local sheetData = { width = 130, height = 160, numFrames = 17, sheetContentWidth = 2210, sheetContentHeight = 160 }
 	local sheet = graphics.newImageSheet( "scenes/game/img/spritesheet.png", sheetData )
+
 	local sequenceData = {
-		{ name = "idle", frames = { 21 } },
-		{ name = "walk", frames = { 22, 23, 24, 25 } , time = 500, loopCount = 0 },
+		{ name = "idle", frames = { 8 } },
+		{ name = "walk", frames = { 9, 10, 11, 12 } , time = 500, loopCount = 0 },
 	}
 	instance = display.newSprite( parent, sheet, sequenceData )
 	instance.x, instance.y = x, y
@@ -33,16 +32,17 @@ function M.new( instance )
 	instance:play()
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 54, density = 3, bounce = 0, friction =  1.0 } )
+	physics.addBody( instance, "dynamic", { radius = 37, density = 3, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
 	instance.anchorY = 0.77
 	instance.angularDamping = 3
 	instance.isDead = false
 
 	function instance:die()
-		audio.play( sounds.sword )
+		audio.play( sounds.enemyDeath )
 		self.isFixedRotation = false
 		self.isSensor = true
+
 		self:applyLinearImpulse( 0, -200 )
 		self.isDead = true
 	end

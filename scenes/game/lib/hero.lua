@@ -36,7 +36,6 @@ function M.new( instance, options )
 
 	-- Add physics
 	physics.addBody( instance, "dynamic", { radius = 37, density = 6, bounce = 0, friction =  1.0 } )
-	--physics.addBody( instance, "dynamic", {density = 1.0, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
 	instance.anchorY = 0.77
 
@@ -86,9 +85,9 @@ function M.new( instance, options )
 	end
 
 	function instance:hurt()
-		fx.flash( self )
+		fx.flash(self)
 		audio.play( sounds.hurt[math.random(2)] )
-		if self.shield:damage() <= 0 then
+		if self.heart:damage() <= 0 then
 
 			-- We died
 			fx.fadeOut( function()
