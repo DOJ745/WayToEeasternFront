@@ -59,7 +59,6 @@ function scene:create(event)
 
 	-- Find scripts our enemies and other items
 
-	--map:extend( "blob", "enemy", "exit", "coin", "spikes" )
 	map:extend("blob", "enemyOfficer", "enemySoldier", "exit", "coin", "spikes")
 
 	-- Find the parallax layer
@@ -67,6 +66,7 @@ function scene:create(event)
 
 	-- Find the music object
 	soundManager = map:findObject("levelMusic")
+	
 	if (soundManager ~= nil ) then
 		print("Found music object!")
 		print("Property 'music' - ", soundManager.music)

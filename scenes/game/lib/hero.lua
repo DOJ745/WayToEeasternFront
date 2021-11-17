@@ -94,12 +94,19 @@ function M.new( instance, options )
 	function instance:hurt()
 
 		fx.flash(self)
-		audio.play( sounds.hurt[math.random(2)] )
+		audio.play( sounds.hurt[math.random(2)])
+
 		if self.heart:damage() <= 0 then
 
 			-- We died
+			--fx.fadeOut( function()
+				--composer.gotoScene( "scenes.refresh", { params = { map = self.filename } } )
+			--end, 1500, 1000 )
+
+			print("DEATH SCORE - ", scene.score:get())
+			
 			fx.fadeOut( function()
-				composer.gotoScene( "scenes.menu", { params = { map = self.filename } } )
+				composer.gotoScene( "scenes.death", { params = { } } )
 			end, 1500, 1000 )
 
 			instance.isDead = true
@@ -121,11 +128,10 @@ function M.new( instance, options )
 		local other = event.other
 
 		local y1, y2 = self.y + 30, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
-		--local y1, y2 = self.y + 20, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
 		local vx, vy = self:getLinearVelocity()
 
 		if phase == "began" then
-			if not self.isDead and ( other.type == "blob" or other.type == "enemy" ) then
+			if not self.isDead and (other.type == "blob" or other.type == "enemy") then
 				if y1 < y2 then
 					-- Hopped on top of an enemy
 					other:die()
@@ -175,24 +181,24 @@ function M.new( instance, options )
 
 	function instance:finalize()
 		-- On remove, cleanup instance, or call directly for non-visual
-		instance:removeEventListener( "preCollision" )
-		instance:removeEventListener( "collision" )
-		Runtime:removeEventListener( "enterFrame", enterFrame )
-		Runtime:removeEventListener( "key", key )
+		instance:removeEventListener("preCollision")
+		instance:removeEventListener("collision")
+		Runtime:removeEventListener("enterFrame", enterFrame)
+		Runtime:removeEventListener("key", key)
 	end
 
 	-- Add a finalize listener (for display objects only, comment out for non-visual)
-	instance:addEventListener( "finalize" )
+	instance:addEventListener("finalize")
 
 	-- Add our enterFrame listener
-	Runtime:addEventListener( "enterFrame", enterFrame )
+	Runtime:addEventListener("enterFrame", enterFrame)
 
 	-- Add our key/joystick listeners
-	Runtime:addEventListener( "key", key )
+	Runtime:addEventListener("key", key)
 
 	-- Add our collision listeners
-	instance:addEventListener( "preCollision" )
-	instance:addEventListener( "collision" )
+	instance:addEventListener("preCollision")
+	instance:addEventListener("collision")
 
 	-- Return instance
 	instance.name = "hero"

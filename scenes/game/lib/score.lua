@@ -20,6 +20,7 @@ function M.new( options )
 
 	local score
 	local num = options.score or 0
+	
 	local textOptions = { x = x, y = y, text = label .. " " .. num, width = width, font = font, fontSize = size, align = align }
 
 	score = display.newEmbossedText( textOptions )
@@ -29,7 +30,7 @@ function M.new( options )
 	score:setFillColor( unpack(color) )
 
 	function score:add( points )
-		self.target = self.target + ( points or 10 )
+		self.target = self.target + ( points or 100 )
 
 		local function countUp()
 			local diff = math.ceil( ( self.target - self.num ) / 12 )
