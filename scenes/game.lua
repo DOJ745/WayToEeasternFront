@@ -10,7 +10,7 @@ local scoring = require( "scenes.game.lib.score" )
 local heartBar = require( "scenes.game.lib.heartBar" )
 
 -- Variables local to scene
-local map, hero, heart, parallax, musicLayer
+local map, hero, heart, parallax, soundManager
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -68,10 +68,10 @@ function scene:create( event )
 	parallax = map:findLayer("parallax")
 
 	-- Find the music object
-	musicLayer = map:findObject("levelMusic")
-	if (musicLayer ~= nil ) then
+	soundManager = map:findObject("levelMusic")
+	if (soundManager ~= nil ) then
 		print("Found music object!")
-		print("Property 'music' - ", musicLayer.music)
+		print("Property 'music' - ", soundManager.music)
 	end
 
 	-- Add our scoring module
@@ -137,16 +137,16 @@ function scene:show( event )
 		-- Start playing wind sound
 		-- For more details on options to play a pre-loaded sound, see the Audio Usage/Functions guide:
 		-- https://docs.coronalabs.com/guide/media/audioSystem/index.html
-		--audio.play( self.sounds.wind, { loops = -1, fadein = 750, channel = 15 } )
-		if (musicLayer.music == "level0") then
+
+		if (soundManager.music == "level0") then
 			audio.play( self.sounds.level0Music, { loops = -1, fadein = 750, channel = 15 } )
 		end
 
-		if (musicLayer.music == "level1") then
+		if (soundManager.music == "level1") then
 			audio.play( self.sounds.level1Music, { loops = -1, fadein = 750, channel = 15 } )
 		end
 
-		if (musicLayer.music == "level2") then
+		if (soundManager.music == "level2") then
 			audio.play( self.sounds.level2Music, { loops = -1, fadein = 750, channel = 15 } )
 		end
 
