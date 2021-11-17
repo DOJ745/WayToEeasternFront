@@ -24,8 +24,8 @@ function M.new( instance )
 	local sheetData = { width = 130, height = 160, numFrames = 17, sheetContentWidth = 2210, sheetContentHeight = 160 }
 	local sheet = graphics.newImageSheet( "scenes/game/img/spritesheet.png", sheetData )
 	local sequenceData = {
-		{ name = "idle", frames = { 21 } },
-		{ name = "walk", frames = { 22, 23, 24, 25 } , time = 500, loopCount = 0 },
+		{ name = "idle", frames = { 13 } },
+		{ name = "walk", frames = { 14, 15, 16, 17 } , time = 500, loopCount = 0 },
 	}
 	instance = display.newSprite( parent, sheet, sequenceData )
 	instance.x, instance.y = x, y

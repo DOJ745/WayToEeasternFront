@@ -21,21 +21,25 @@ function M.new( instance )
 	end
 
 	function instance:collision( event )
+		
 		local phase, other = event.phase, event.other
 		if phase == "began" and other.name == "hero" and not other.isDead then
+
 			other.isDead = true
 			other.linearDamping = 8
 			audio.play( sounds.door )
 			self.fill.effect = "filter.exposure"
+
 			transition.to( self.fill.effect, { time = 666, exposure = -5, onComplete = function()
 				fx.fadeOut( function()
-					composer.gotoScene( "scene.refresh", { params = { map = self.map, score = scene.score:get() } } )
+					composer.gotoScene( "scenes.refresh", { params = { map = self.map, score = scene.score:get() } } )
+					--composer.gotoScene( "scenes.refresh", { params = { map = "", score = scene.score:get() } } )
 				end )
 			end } )
 		end
 	end
 
-	instance:addEventListener( "collision" )
+	instance:addEventListener("collision")
 	return instance
 end
 

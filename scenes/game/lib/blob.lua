@@ -22,7 +22,15 @@ function M.new( instance )
 	instance.isDead = false
 
 	function instance:die()
-		audio.play( sounds.squish )
+
+		if (self.name == "cat") then
+			audio.play(sounds.meow)
+		end
+
+		if (self.name == "dog") then
+			audio.play(sounds.bark)
+		end
+		--audio.play( sounds.squish )
 
 		self.isFixedRotation = false
 		self.isSensor = true

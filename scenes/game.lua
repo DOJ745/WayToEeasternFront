@@ -22,6 +22,7 @@ function scene:create(event)
 
 		bark = audio.loadSound(sndDir .. "bark.mp3");
 		meow = audio.loadSound(sndDir .. "meow.mp3");
+
 		enemyDeath = audio.loadSound(sndDir .. "enemyDeath.mp3");
 
 		level0Music = audio.loadSound(sndDir .. "background/level0_music.mp3");
@@ -93,8 +94,10 @@ function scene:create(event)
 
 	-- Add our hearts module
 	heart = heartBar.new()
+
 	heart.x = 48
 	heart.y = display.screenOriginY + heart.contentHeight / 2 + 16
+
 	hero.heart = heart
 
 	-- Touch the hearts to go back to the main menu
