@@ -1,4 +1,3 @@
-
 -- Include modules/libraries
 local composer = require( "composer" )
 local fx = require( "com.ponywolf.ponyfx" )
@@ -9,14 +8,11 @@ local json = require( "json" )
 local scoring = require( "scenes.game.lib.score" )
 local heartBar = require( "scenes.game.lib.heartBar" )
 
--- Variables local to scene
-local map, hero, heart, parallax, soundManager
+local map, hero, heart, parallax, soundManager, levelStatus
 
--- Create a new Composer scene
 local scene = composer.newScene()
 
--- This function is called when scene is created
-function scene:create( event )
+function scene:create(event)
 
 	local sceneGroup = self.view  -- Add scene display objects to this group
 
@@ -27,11 +23,11 @@ function scene:create( event )
 		bark = audio.loadSound(sndDir .. "bark.mp3");
 		meow = audio.loadSound(sndDir .. "meow.mp3");
 		enemyDeath = audio.loadSound(sndDir .. "enemyDeath.mp3");
-		--slime = audio.loadSound( sndDir .. "slime.mp3" ),
-		--wind = audio.loadSound( sndDir .. "loops/spacewind.mp3" ),
+
 		level0Music = audio.loadSound(sndDir .. "background/level0_music.mp3");
 		level1Music = audio.loadSound(sndDir .. "background/level1_music.mp3");
 		level2Music = audio.loadSound(sndDir .. "background/level2_music.mp3");
+
 		door = audio.loadSound( sndDir .. "door.mp3" ),
 
 		hurt = {
@@ -45,7 +41,7 @@ function scene:create( event )
 
 	-- Start physics before loading map
 	physics.start()
-	physics.setGravity( 0, 32 )
+	physics.setGravity( 0, 30 )
 
 	-- Load our map
 	local filename = event.params.map or "scenes/game/levels/level0.json"
@@ -65,7 +61,7 @@ function scene:create( event )
 	--map:extend("animal", "enemy", "coin", "spikes", "exit")
 
 	-- Find the parallax layer
-	parallax = map:findLayer("parallax")
+	--parallax = map:findLayer("parallax")
 
 	-- Find the music object
 	soundManager = map:findObject("levelMusic")
@@ -74,17 +70,25 @@ function scene:create( event )
 		print("Property 'music' - ", soundManager.music)
 	end
 
+	levelStatus = map:findObject("levelStatus")
+	if (levelStatus ~= nil ) then
+		print("Found level status!")
+		print("Property 'isOpened' - " .. tostring(levelStatus.isOpened))
+	end
+
 	-- Add our scoring module
 	local coin = display.newImageRect(sceneGroup, "scenes/game/img/coin.png", 64, 64 )
 
+	-- Coin icon position
 	coin.x = display.contentWidth - coin.contentWidth / 2 - 24
 	coin.y = display.screenOriginY + coin.contentHeight / 2 + 20
 
 	scene.score = scoring.new( { score = event.params.score } )
 	local score = scene.score
 
+	-- Points positions
 	score.x = display.contentWidth - score.contentWidth / 2 - 32 - coin.width
-	score.y = display.screenOriginY + score.contentHeight / 2 + 16
+	score.y = display.screenOriginY + score.contentHeight / 2 + 34
 
 	-- Add our hearts module
 	heart = heartBar.new()
@@ -174,9 +178,9 @@ function scene:destroy( event )
 	end
 end
 
-scene:addEventListener( "create" )
-scene:addEventListener( "show" )
-scene:addEventListener( "hide" )
-scene:addEventListener( "destroy" )
+scene:addEventListener("create")
+scene:addEventListener("show")
+scene:addEventListener("hide")
+scene:addEventListener("destroy")
 
 return scene

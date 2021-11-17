@@ -1,4 +1,3 @@
-
 -- Score lib
 
 -- Define module
@@ -10,8 +9,10 @@ function M.new( options )
 	options = options or {}
 	local label = options.label or ""
 	local x, y = options.x or 0, options.y or 0
-	local font = options.font or "scene/game/font/GermaniaOne-Regular.ttf"
+
+	local font = options.font or "scenes/game/font/Special Elite.ttf"
 	local size = options.size or 56
+
 	local align = options.align or "right"
 	local stroked = options.stroked or true
 	local color = options.color or { 1, 1, 1, 1 }
@@ -32,11 +33,13 @@ function M.new( options )
 		local function countUp()
 			local diff = math.ceil( ( self.target - self.num ) / 12 )
 			self.num = self.num + diff
+
 			if self.num > self.target then
 				self.num = self.target
 				timer.cancel( self.timer )
 				self.timer = nil
 			end
+
 			self.text = label .. " " .. ( self.num or 0 )
 		end
 		if not self.timer then
@@ -51,7 +54,7 @@ function M.new( options )
 		if self and self.timer then timer.cancel( self.timer ) end
 	end
 
-	score:addEventListener( "finalize" )
+	score:addEventListener("finalize")
 
 	-- Return instance
 	return score

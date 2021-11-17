@@ -35,13 +35,13 @@ function M.new( instance, options )
 	instance:setSequence( "idle" )
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 37, density = 5.5, bounce = 0, friction =  1.05 } )
+	physics.addBody( instance, "dynamic", { radius = 37, density = 6, bounce = 0, friction =  1.0 } )
+	--physics.addBody( instance, "dynamic", {density = 1.0, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
 	instance.anchorY = 0.77
 
 	-- Keyboard control
-	--local max, acceleration, left, right, flip = 375, 5000, 0, 0, 0
-	local max, acceleration, left, right, flip = 275, 3000, 0, 0, 0
+	local max, acceleration, left, right, flip = 250, 850, 0, 0, 0
 
 	local lastEvent = {}
 	local function key( event )
@@ -62,7 +62,7 @@ function M.new( instance, options )
 			end
 
 			if not ( left == 0 and right == 0 ) and not instance.jumping then
-				instance:setSequence( "walk" )
+				instance:setSequence("walk")
 				instance:play()
 			end
 
@@ -79,7 +79,7 @@ function M.new( instance, options )
 
 	function instance:jump()
 		if not self.jumping then
-			self:applyLinearImpulse( 0, -550 )
+			self:applyLinearImpulse(0, -550)
 			self:setSequence( "jump" )
 			self.jumping = true
 		end
@@ -97,7 +97,7 @@ function M.new( instance, options )
 
 			instance.isDead = true
 			instance.isSensor = true
-			self:applyLinearImpulse( 0, -500 )
+			self:applyLinearImpulse(0, -500)
 
 			-- Death animation
 			instance:setSequence( "ouch" )
@@ -112,7 +112,7 @@ function M.new( instance, options )
 		local phase = event.phase
 		local other = event.other
 
-		local y1, y2 = self.y + 50, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
+		local y1, y2 = self.y + 30, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
 		--local y1, y2 = self.y + 20, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
 		local vx, vy = self:getLinearVelocity()
 
@@ -125,6 +125,7 @@ function M.new( instance, options )
 					-- They attacked us
 					self:hurt()
 				end
+
 			elseif self.jumping and vy > 0 and not self.isDead then
 				-- Landed after jumping
 				self.jumping = false

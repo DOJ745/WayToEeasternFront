@@ -16,9 +16,10 @@ function M.new( instance )
 	function instance:collision( event )
 
 		local phase, other = event.phase, event.other
+
 		if phase == "began" and other.type == "hero" then
-			audio.play( sounds.coin )
-			scene.score:add( 100 )
+			audio.play(sounds.coin)
+			scene.score:add(100)
 			display.remove( self )
 		end
 	end
