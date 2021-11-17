@@ -31,6 +31,34 @@
                  "width":2526.66666666667,
                  "x":1.33333333333333,
                  "y":1441.33333333333
+                }, 
+                {
+                 "height":74.6666666666667,
+                 "id":44,
+                 "name":"levelMusic",
+                 "properties":[
+                        {
+                         "name":"music",
+                         "type":"string",
+                         "value":"level0"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":73.3333333333333,
+                 "x":-302.666666666667,
+                 "y":693.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":45,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":-601.333333333333,
+                 "y":1076
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -259,29 +287,6 @@
                 {
                  "gid":14,
                  "height":264,
-                 "id":19,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"bodyType",
-                         "type":"string",
-                         "value":"static"
-                        }, 
-                        {
-                         "name":"friction",
-                         "type":"float",
-                         "value":1
-                        }],
-                 "rotation":-90,
-                 "type":"",
-                 "visible":true,
-                 "width":165,
-                 "x":518.5,
-                 "y":1131.5
-                }, 
-                {
-                 "gid":14,
-                 "height":264,
                  "id":20,
                  "name":"",
                  "properties":[
@@ -477,7 +482,7 @@
                         {
                          "name":"friction",
                          "type":"float",
-                         "value":1.5
+                         "value":1
                         }],
                  "rotation":0,
                  "type":"",
@@ -485,6 +490,29 @@
                  "width":400,
                  "x":-124,
                  "y":1064.5
+                }, 
+                {
+                 "gid":16,
+                 "height":100,
+                 "id":43,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }, 
+                        {
+                         "name":"friction",
+                         "type":"float",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":400,
+                 "x":112,
+                 "y":1066
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -536,6 +564,12 @@
                  "height":1057,
                  "id":14,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -547,6 +581,12 @@
                  "height":1055,
                  "id":16,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"bodyType",
+                         "type":"string",
+                         "value":"static"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -560,8 +600,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":43,
+ "nextlayerid":9,
+ "nextobjectid":46,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

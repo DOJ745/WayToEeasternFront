@@ -26,7 +26,6 @@ function M.new( instance, options )
 	local sheet = graphics.newImageSheet( "scenes/game/img/spritesheet.png", sheetData )
 	local sequenceData = {
 		{ name = "idle", frames = { 1 } },
-		--{ name = "walk", frames = { 2, 3, 4, 5 }, time = 333, loopCount = 0 },
 		{ name = "walk", frames = { 2, 3, 4, 5 }, time = 333, loopCount = 0 },
 		{ name = "jump", frames = { 6 } },
 		{ name = "ouch", frames = { 7 } },

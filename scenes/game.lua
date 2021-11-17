@@ -10,7 +10,7 @@ local scoring = require( "scenes.game.lib.score" )
 local heartBar = require( "scenes.game.lib.heartBar" )
 
 -- Variables local to scene
-local map, hero, heart, parallax
+local map, hero, heart, parallax, musicLayer
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -23,10 +23,6 @@ function scene:create( event )
 	-- Sounds
 	local sndDir = "scenes/game/sfx/"
 	scene.sounds = {
-
-		--thud = audio.loadSound( sndDir .. "thud.mp3" ),
-		--sword = audio.loadSound( sndDir .. "sword.mp3" ),
-		--squish = audio.loadSound( sndDir .. "squish.mp3" ),
 
 		bark = audio.loadSound(sndDir .. "bark.mp3");
 		meow = audio.loadSound(sndDir .. "meow.mp3");
@@ -57,21 +53,29 @@ function scene:create( event )
 	map = tiled.new( mapData, "scenes/game/levels" )
 	--map.xScale, map.yScale = 0.85, 0.85
 
-	-- Find our hero
+	-- Find our hero script
 	map.extensions = "scenes.game.lib."
-	map:extend( "hero" )
-	hero = map:findObject( "hero" )
+	map:extend("hero")
+
+	hero = map:findObject("hero")
 	hero.filename = filename
 
-	-- Find our enemies and other items
+	-- Find scripts our enemies and other items
 	map:extend( "blob", "enemy", "exit", "coin", "spikes" )
 	--map:extend("animal", "enemy", "coin", "spikes", "exit")
 
 	-- Find the parallax layer
-	parallax = map:findLayer( "parallax" )
+	parallax = map:findLayer("parallax")
+
+	-- Find the music object
+	musicLayer = map:findObject("levelMusic")
+	if (musicLayer ~= nil ) then
+		print("Found music object!")
+		print("Property 'music' - ", musicLayer.music)
+	end
 
 	-- Add our scoring module
-	local coin = display.newImageRect( sceneGroup, "scenes/game/img/coin.png", 64, 64 )
+	local coin = display.newImageRect(sceneGroup, "scenes/game/img/coin.png", 64, 64 )
 
 	coin.x = display.contentWidth - coin.contentWidth / 2 - 24
 	coin.y = display.screenOriginY + coin.contentHeight / 2 + 20
@@ -88,19 +92,19 @@ function scene:create( event )
 	heart.y = display.screenOriginY + heart.contentHeight / 2 + 16
 	hero.heart = heart
 
-	-- Touch the sheilds to go back to the main...
+	-- Touch the hearts to go back to the main menu
 	function heart:tap(event)
 		fx.fadeOut( function()
-				composer.gotoScene( "scenes.menu")
+				composer.gotoScene("scenes.menu")
 			end )
 	end
 	heart:addEventListener("tap")
 
 	-- Insert our game items in the correct back-to-front order
-	sceneGroup:insert( map )
-	sceneGroup:insert( score )
-	sceneGroup:insert( coin )
-	sceneGroup:insert( heart )
+	sceneGroup:insert(map)
+	sceneGroup:insert(score)
+	sceneGroup:insert(coin)
+	sceneGroup:insert(heart)
 
 end
 
@@ -134,7 +138,18 @@ function scene:show( event )
 		-- For more details on options to play a pre-loaded sound, see the Audio Usage/Functions guide:
 		-- https://docs.coronalabs.com/guide/media/audioSystem/index.html
 		--audio.play( self.sounds.wind, { loops = -1, fadein = 750, channel = 15 } )
-		audio.play( self.sounds.level0Music, { loops = -1, fadein = 750, channel = 15 } )
+		if (musicLayer.music == "level0") then
+			audio.play( self.sounds.level0Music, { loops = -1, fadein = 750, channel = 15 } )
+		end
+
+		if (musicLayer.music == "level1") then
+			audio.play( self.sounds.level1Music, { loops = -1, fadein = 750, channel = 15 } )
+		end
+
+		if (musicLayer.music == "level2") then
+			audio.play( self.sounds.level2Music, { loops = -1, fadein = 750, channel = 15 } )
+		end
+
 	end
 end
 

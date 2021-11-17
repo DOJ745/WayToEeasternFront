@@ -70,7 +70,7 @@ function scene:create( event )
 	exit:addEventListener( "tap" )
 	fx.breath(exit)
 
-	-- Transtion in logo
+	-- Transtion in logo at the start of app
 	transition.from( ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 1333, transition = easing.outQuad } )
 
 	sceneGroup:insert( ui )
