@@ -1,5 +1,5 @@
 -- Score lib
-
+local json = require( "json" )
 -- Define module
 local M = {}
 
@@ -17,6 +17,10 @@ function M.new( options )
 	local stroked = options.stroked or true
 	local color = options.color or { 1, 1, 1, 1 }
 	local width = options.width or 256
+
+	-- Params for file
+	local scoresTable = {}
+	local filePath = system.pathForFile( "scores.json", system.DocumentsDirectory )
 
 	local score
 	local num = options.score or 0
@@ -51,6 +55,39 @@ function M.new( options )
 	end
   
 	function score:get() return self.target or 0 end
+
+	function score:loadScores()
+		
+		local file = io.open( filePath, "r" )
+ 
+    	if file then
+        	local contents = file:read( "*a" )
+        	io.close( file )
+        	scoresTable = json.decode( contents )
+    	end
+ 
+    	if ( scoresTable == nil or #scoresTable == 0 ) then
+        	scoresTable = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    	end
+
+	end
+
+	function score:saveScore()
+
+		for i = #scoresTable, 11, -1 do
+			table.remove( scoresTable, i )
+		end
+	 
+		local file = io.open( filePath, "w" )
+	 
+		if file then
+			file:write( json.encode( scoresTable ) )
+			io.close( file )
+		end
+
+	end
+
+	function score:getScoreTable() return self.scoresTable or nil end
 
 	function score:finalize()
 		-- On remove, cleanup instance
