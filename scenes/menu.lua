@@ -53,7 +53,49 @@ function scene:create( event )
 	records = ui:findObject("records")
 
 	function records:tap()
-		composer.gotoScene("scenes.records", {params = {} } )
+
+		local font = "scenes/game/font/Special Elite.ttf"
+		local testBackground = display.newImageRect( sceneGroup, "scenes/main_menu/ui/scoresBackgroundColor.png", 3000, 2500 )
+		
+		scene.score:loadScores()
+		tempTable = scene.score:getScoreTable()
+
+		local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, font, 44 )
+		local rankNum = {} 
+		local thisScore = {}
+
+    	for i = 1, 10 do
+        	if (tempTable[i]) then
+            	local yPos = 150 + ( i * 52 )
+ 
+				rankNum[i] = display.newText( sceneGroup, i .. ")", display.contentCenterX - 50, yPos, font, 36 )
+            	rankNum[i]:setFillColor(0)
+            	rankNum[i].anchorX = 1
+ 
+				thisScore[i] = display.newText( sceneGroup, tempTable[i], display.contentCenterX - 30, yPos, font, 36 )
+				thisScore[i]:setFillColor(0)
+            	thisScore[i].anchorX = 0
+        	end
+    	end
+
+
+		closeButton = display.newText( sceneGroup, "Close", display.contentCenterX, 710, font, 44 )
+    	closeButton:setFillColor( 0.75, 0.95, 1 )
+		
+		local function closeRecords()
+			display.remove(closeButton)
+			display.remove(highScoresHeader)
+			display.remove(testBackground)
+
+			for i = 1, 10 do
+				if (tempTable[i]) then
+					display.remove(rankNum[i])
+					display.remove(thisScore[i])
+				end
+			end
+		end
+
+		closeButton:addEventListener("tap", closeRecords)
 	end
 
 	fx.breath(records)
