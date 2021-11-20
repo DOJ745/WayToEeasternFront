@@ -8,8 +8,6 @@ local json = require( "json" )
 -- Variables local to scene
 local ui, backgroundMusic, start
 
-
-
 -- Create a new Composer scene
 local scene = composer.newScene()
 
@@ -55,28 +53,9 @@ function scene:create( event )
 	records = ui:findObject("records")
 
 	function records:tap()
-
-		local font = "scenes/game/font/Special Elite.ttf"
-		recordsBackground.alpha = 1.0
-		scene.score:loadScores()
-		tempTable = scene.score:getScoreTable()
-
-		local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, font, 44 )
-
-    	for i = 1, 10 do
-        	if ( tempTable[i] ) then
-            	local yPos = 150 + ( i * 52 )
- 
-            	local rankNum = display.newText( sceneGroup, i .. ")", display.contentCenterX - 50, yPos, font, 36 )
-            	rankNum:setFillColor( 0.95 )
-            	rankNum.anchorX = 1
- 
-            	local thisScore = display.newText( sceneGroup, tempTable[i], display.contentCenterX-30, yPos, font, 36 )
-            	thisScore.anchorX = 0
-        	end
-    	end
-
+		composer.gotoScene("scenes.records", {params = {} } )
 	end
+
 	fx.breath(records)
 
 	--Find the choose level button
@@ -89,17 +68,11 @@ function scene:create( event )
 	fx.breath(chooseLevel)
 
 	-- Find the exit button
-	local exit = ui:findObject( "exit" )
-
+	exit = ui:findObject( "exit" )
 	function exit:tap()
 		native.requestExit()
 	end
 	fx.breath(exit)
-
-	records:addEventListener("tap")
-	chooseLevel:addEventListener("tap")
-	exit:addEventListener("tap")
-
 
 	-- Transtion in logo at the start of app
 	transition.from(ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 1333, transition = easing.outQuad } )
@@ -123,7 +96,11 @@ function scene:show( event )
 		Runtime:addEventListener( "enterFrame", enterFrame )
 
 	elseif ( phase == "did" ) then
+
 		start:addEventListener("tap")
+		records:addEventListener("tap")
+		chooseLevel:addEventListener("tap")
+		exit:addEventListener("tap")
 
 		timer.performWithDelay( 10, function()
 			audio.play( backgroundMusic, { loops = -1, channel = 1 } )
