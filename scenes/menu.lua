@@ -56,27 +56,27 @@ function scene:create( event )
 
 	function records:tap()
 
+		local font = "scenes/game/font/Special Elite.ttf"
 		recordsBackground.alpha = 1.0
 		scene.score:loadScores()
 		tempTable = scene.score:getScoreTable()
 
-		local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, native.systemFont, 44 )
+		local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, font, 44 )
 
     	for i = 1, 10 do
         	if ( tempTable[i] ) then
-            	local yPos = 150 + ( i * 56 )
+            	local yPos = 150 + ( i * 52 )
  
-            	local rankNum = display.newText( sceneGroup, i .. ")", display.contentCenterX-50, yPos, native.systemFont, 36 )
-            	rankNum:setFillColor( 0.8 )
+            	local rankNum = display.newText( sceneGroup, i .. ")", display.contentCenterX - 50, yPos, font, 36 )
+            	rankNum:setFillColor( 0.95 )
             	rankNum.anchorX = 1
  
-            	local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX-30, yPos, native.systemFont, 36 )
+            	local thisScore = display.newText( sceneGroup, tempTable[i], display.contentCenterX-30, yPos, font, 36 )
             	thisScore.anchorX = 0
         	end
     	end
 
 	end
-	records:addEventListener("tap")
 	fx.breath(records)
 
 	--Find the choose level button
@@ -86,7 +86,6 @@ function scene:create( event )
 				composer.gotoScene( "scenes.game", { params = {} } )
 			end )
 	end
-	chooseLevel:addEventListener("tap")
 	fx.breath(chooseLevel)
 
 	-- Find the exit button
@@ -95,15 +94,17 @@ function scene:create( event )
 	function exit:tap()
 		native.requestExit()
 	end
-
-	exit:addEventListener("tap")
 	fx.breath(exit)
+
+	records:addEventListener("tap")
+	chooseLevel:addEventListener("tap")
+	exit:addEventListener("tap")
+
 
 	-- Transtion in logo at the start of app
 	transition.from(ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 1333, transition = easing.outQuad } )
 
 	sceneGroup:insert(ui)
-
 	-- escape key
 	Runtime:addEventListener("key", key)
 end
@@ -150,9 +151,9 @@ function scene:destroy( event )
 	Runtime:removeEventListener("key", key)
 end
 
-scene:addEventListener( "create" )
-scene:addEventListener( "show" )
-scene:addEventListener( "hide" )
-scene:addEventListener( "destroy" )
+scene:addEventListener("create")
+scene:addEventListener("show")
+scene:addEventListener("hide")
+scene:addEventListener("destroy")
 
 return scene

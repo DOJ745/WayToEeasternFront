@@ -101,7 +101,7 @@ function M.new( options )
 
 	end
 
-	function score:getScoreTable() return self.scoresTable end
+	function score:getScoreTable() return scoresTable end
 
 	function score:finalize()
 		-- On remove, cleanup instance
