@@ -36,7 +36,7 @@ function scene:create( event )
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth / 2, display.contentCenterY - ui.designedHeight / 2
 
 	-- Find the start button
-	start = ui:findObject( "start" )
+	start = ui:findObject("start")
 	function start:tap()
 		fx.fadeOut( function()
 				composer.gotoScene( "scenes.game", { params =  {} } )
@@ -45,12 +45,17 @@ function scene:create( event )
 	fx.breath(start)
 
 	-- Find the records button
-	records = ui:findObject( "records" )
+	recordsBackground = ui:findLayer("recordsWindow")
+	records = ui:findObject("records")
+
+	--if (records ~= nil) then print("Found records button") end
+	--if (recordsBackground ~= nil) then print("Found records Layer") end
+
 	function records:tap()
-		fx.fadeOut( function()
-				composer.gotoScene( "scenes.game", { params = {} } )
-			end )
+		recordsBackground.alpha = 1.0
+		--recordsBackground:isVisible(true)
 	end
+	records:addEventListener("tap")
 	fx.breath(records)
 
 	--Find the choose level button
@@ -60,29 +65,30 @@ function scene:create( event )
 				composer.gotoScene( "scenes.game", { params = {} } )
 			end )
 	end
+	chooseLevel:addEventListener("tap")
 	fx.breath(chooseLevel)
 
 	-- Find the exit button
 	local exit = ui:findObject( "exit" )
+
 	function exit:tap()
 		native.requestExit()
 	end
-	exit:addEventListener( "tap" )
+
+	exit:addEventListener("tap")
 	fx.breath(exit)
 
 	-- Transtion in logo at the start of app
-	transition.from( ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 1333, transition = easing.outQuad } )
+	transition.from(ui:findObject( "title" ), { xScale = 2.5, yScale = 2.5, time = 1333, transition = easing.outQuad } )
 
-	sceneGroup:insert( ui )
+	sceneGroup:insert(ui)
 
 	-- escape key
 	Runtime:addEventListener("key", key)
 end
 
-local function enterFrame( event )
-
+local function enterFrame(event)
 	local elapsed = event.time
-
 end
 
 -- This function is called when scene comes fully on screen
@@ -95,7 +101,7 @@ function scene:show( event )
 		Runtime:addEventListener( "enterFrame", enterFrame )
 
 	elseif ( phase == "did" ) then
-		start:addEventListener( "tap" )
+		start:addEventListener("tap")
 
 		timer.performWithDelay( 10, function()
 			audio.play( backgroundMusic, { loops = -1, channel = 1 } )

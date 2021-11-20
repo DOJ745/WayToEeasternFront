@@ -1,4 +1,3 @@
-
 -- Module/class for platfomer hero
 
 -- Use this as a template to build an in-game hero 

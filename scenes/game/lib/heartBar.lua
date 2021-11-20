@@ -15,12 +15,14 @@ function M.new( options )
 	-- Create display group to hold visuals
 	local group = display.newGroup()
 	local hearts = {}
+
 	for i = 1, max do
 		hearts[i] = display.newImageRect( "scenes/game/img/heart.png", w, h )
 		hearts[i].x = (i - 1) * ( ( w / 2 ) + spacing )
 		hearts[i].y = 0
 		group:insert( hearts[i] )
 	end
+	
 	group.count = max
 
 	function group:damage( amount )

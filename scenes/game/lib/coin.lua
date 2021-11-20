@@ -1,4 +1,3 @@
-
 -- Extends an object to act as a pickup
 
 -- Define module
@@ -26,6 +25,7 @@ function M.new( instance )
 
 	instance._y = instance.y
 	physics.addBody( instance, "static", { isSensor = true } )
+	-- Coin animation
 	transition.from( instance, { y = instance._y - 16, transition = easing.outBounce, time = 500, iterations = -1 } )
 	instance:addEventListener( "collision" )
 

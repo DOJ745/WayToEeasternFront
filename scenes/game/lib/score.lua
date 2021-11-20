@@ -1,5 +1,6 @@
--- Score lib
+-- Score libs
 local json = require( "json" )
+
 -- Define module
 local M = {}
 

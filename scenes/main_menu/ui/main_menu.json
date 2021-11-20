@@ -16,8 +16,8 @@
                  "type":"",
                  "visible":true,
                  "width":1722.66666666667,
-                 "x":-177.333333333333,
-                 "y":927.333333333333
+                 "x":-212,
+                 "y":963.333333333333
                 }, 
                 {
                  "height":19,
@@ -138,8 +138,8 @@
                  "type":"",
                  "visible":true,
                  "width":205.333333333333,
-                 "x":522.333333333333,
-                 "y":494.333333333334
+                 "x":521,
+                 "y":471.666666666667
                 }, 
                 {
                  "gid":12,
@@ -198,8 +198,8 @@
                  "type":"",
                  "visible":true,
                  "width":196.176470588235,
-                 "x":525.666666666667,
-                 "y":594.333333333333
+                 "x":527,
+                 "y":583.666666666666
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -245,15 +245,27 @@
          "draworder":"topdown",
          "id":10,
          "name":"recordsWindow",
-         "objects":[],
-         "opacity":1,
+         "objects":[
+                {
+                 "gid":17,
+                 "height":786.051282051282,
+                 "id":25,
+                 "name":"recordsBack",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1017.16239316239,
+                 "x":119.794871794872,
+                 "y":803.282051282051
+                }],
+         "opacity":0,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":25,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
@@ -271,7 +283,7 @@
          "margin":0,
          "name":"ui",
          "spacing":0,
-         "tilecount":15,
+         "tilecount":16,
          "tileheight":199,
          "tiles":[
                 {
@@ -363,6 +375,12 @@
                  "image":"recordsButton.png",
                  "imageheight":68,
                  "imagewidth":198
+                }, 
+                {
+                 "id":16,
+                 "image":"scoresBackgroundColor.png",
+                 "imageheight":64,
+                 "imagewidth":64
                 }],
          "tilewidth":556
         }],
