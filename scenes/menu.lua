@@ -1,12 +1,14 @@
-
 -- Include modules/libraries
 local composer = require( "composer" )
 local fx = require( "com.ponywolf.ponyfx" )
 local tiled = require( "com.ponywolf.ponytiled" )
+local scoring = require( "scenes.game.lib.score" )
 local json = require( "json" )
 
 -- Variables local to scene
 local ui, backgroundMusic, start
+
+
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -22,6 +24,7 @@ local function key(event)
 	end
 end
 
+
 -- This function is called when scene is created
 function scene:create( event )
 
@@ -34,6 +37,9 @@ function scene:create( event )
 	local uiData = json.decodeFile( system.pathForFile( "scenes/main_menu/ui/main_menu.json", system.ResourceDirectory ) )
 	ui = tiled.new( uiData, "scenes/main_menu/ui" )
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth / 2, display.contentCenterY - ui.designedHeight / 2
+
+	scene.score = scoring.new( { score = event.params.score } )
+	local score = scene.score
 
 	-- Find the start button
 	start = ui:findObject("start")
@@ -48,12 +54,27 @@ function scene:create( event )
 	recordsBackground = ui:findLayer("recordsWindow")
 	records = ui:findObject("records")
 
-	--if (records ~= nil) then print("Found records button") end
-	--if (recordsBackground ~= nil) then print("Found records Layer") end
-
 	function records:tap()
+
 		recordsBackground.alpha = 1.0
-		--recordsBackground:isVisible(true)
+		scene.score:loadScores()
+		tempTable = scene.score:getScoreTable()
+
+		local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, native.systemFont, 44 )
+
+    	for i = 1, 10 do
+        	if ( tempTable[i] ) then
+            	local yPos = 150 + ( i * 56 )
+ 
+            	local rankNum = display.newText( sceneGroup, i .. ")", display.contentCenterX-50, yPos, native.systemFont, 36 )
+            	rankNum:setFillColor( 0.8 )
+            	rankNum.anchorX = 1
+ 
+            	local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX-30, yPos, native.systemFont, 36 )
+            	thisScore.anchorX = 0
+        	end
+    	end
+
 	end
 	records:addEventListener("tap")
 	fx.breath(records)
