@@ -31,9 +31,19 @@ function scene:create( event )
 	-- stream music
 	backgroundMusic = audio.loadStream( "scenes/main_menu/sfx/main_menu_music.mp3" )
 
+
+	local levelsTileData = {}
+	local levelFiles = {"scenes/game/levels/level1.json"}
+
+	for i = 1, #levelFiles do
+		local levelData = json.decodeFile( system.pathForFile(levelFiles[i], system.ResourceDirectory) )
+		--local tileData = tiled.new(levelData, "scenes/game/levels")
+		--levelsTileData.insert(tileData)
+	end
+
 	-- Load our UI
-	local uiData = json.decodeFile( system.pathForFile( "scenes/main_menu/ui/main_menu.json", system.ResourceDirectory ) )
-	ui = tiled.new( uiData, "scenes/main_menu/ui" )
+	local uiData = json.decodeFile( system.pathForFile("scenes/main_menu/ui/main_menu.json", system.ResourceDirectory) )
+	ui = tiled.new(uiData, "scenes/main_menu/ui")
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth / 2, display.contentCenterY - ui.designedHeight / 2
 
 	scene.score = scoring.new( { score = event.params.score } )
