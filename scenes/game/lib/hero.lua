@@ -104,6 +104,10 @@ function M.new( instance, options )
 			--end, 1500, 1000 )
 
 			print("DEATH SCORE - ", scene.score:get())
+
+			scene.score:loadScores()
+			scene.score:setScore(scene.score:get())
+			scene.score:saveScore()
 			
 			fx.fadeOut( function()
 				composer.gotoScene( "scenes.death", { params = { } } )

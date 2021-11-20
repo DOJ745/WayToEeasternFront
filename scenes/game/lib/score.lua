@@ -87,7 +87,20 @@ function M.new( options )
 
 	end
 
-	function score:getScoreTable() return self.scoresTable or nil end
+	function score:setScore(score)
+
+		-- Insert the saved score from the last game into the table, then reset it
+		table.insert( scoresTable, score )
+	
+		-- Sort the table entries from highest to lowest
+		local function compare( a, b )
+			return a > b
+		end
+		table.sort( scoresTable, compare )
+
+	end
+
+	function score:getScoreTable() return self.scoresTable end
 
 	function score:finalize()
 		-- On remove, cleanup instance
