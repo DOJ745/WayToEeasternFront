@@ -9,6 +9,7 @@ local M = {}
 
 local levelStatuses = {}
 local composer = require( "composer" )
+
 local filePath = system.pathForFile( "levelStatuses.json", system.DocumentsDirectory )
 
 function loadLevelStatuses()
@@ -25,7 +26,7 @@ function loadLevelStatuses()
 
 end
 
-function changeLevelStatus()
+function changeLevelStatus(levelName)
 
 end
 

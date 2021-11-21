@@ -6,7 +6,9 @@ local scoring = require( "scenes.game.lib.score" )
 local json = require( "json" )
 
 -- Variables local to scene
-local ui, backgroundMusic, start
+local ui, backgroundMusic, start, levelStatuses
+local font = "scenes/game/font/Special Elite.ttf"
+local filePath = system.pathForFile( "levelStatuses.json", system.DocumentsDirectory )
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -22,6 +24,24 @@ local function key(event)
 	end
 end
 
+function loadLevelStatuses()
+
+	local file = io.open( filePath, "r" )
+
+	if file then
+		local contents = file:read( "*a" )
+		io.close( file )
+		levelStatuses = json.decode( contents )
+
+		print("LENGTH - ", #levelStatuses)
+		for i = 1, #levelStatuses do
+			print("Level " .. i .. " status - ", levelStatuses[i].level)
+		end
+
+	end
+
+end
+
 
 -- This function is called when scene is created
 function scene:create( event )
@@ -31,20 +51,12 @@ function scene:create( event )
 	-- stream music
 	backgroundMusic = audio.loadStream( "scenes/main_menu/sfx/main_menu_music.mp3" )
 
-
-	local levelsTileData = {}
-	local levelFiles = {"scenes/game/levels/level1.json"}
-
-	for i = 1, #levelFiles do
-		local levelData = json.decodeFile( system.pathForFile(levelFiles[i], system.ResourceDirectory) )
-		--local tileData = tiled.new(levelData, "scenes/game/levels")
-		--levelsTileData.insert(tileData)
-	end
-
 	-- Load our UI
 	local uiData = json.decodeFile( system.pathForFile("scenes/main_menu/ui/main_menu.json", system.ResourceDirectory) )
 	ui = tiled.new(uiData, "scenes/main_menu/ui")
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth / 2, display.contentCenterY - ui.designedHeight / 2
+
+	loadLevelStatuses()
 
 	scene.score = scoring.new( { score = event.params.score } )
 	local score = scene.score
@@ -64,13 +76,13 @@ function scene:create( event )
 
 	function records:tap()
 
-		local font = "scenes/game/font/Special Elite.ttf"
-		local testBackground = display.newImageRect( sceneGroup, "scenes/main_menu/ui/scoresBackgroundColor.png", 3000, 2500 )
+		local background = display.newImageRect( sceneGroup, "scenes/main_menu/ui/backgroundColor.png", 3000, 2500 )
 		
 		scene.score:loadScores()
 		tempTable = scene.score:getScoreTable()
 
 		local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, font, 44 )
+		highScoresHeader:setFillColor(0)
 		local rankNum = {} 
 		local thisScore = {}
 
@@ -90,12 +102,12 @@ function scene:create( event )
 
 
 		closeButton = display.newText( sceneGroup, "Close", display.contentCenterX, 710, font, 44 )
-    	closeButton:setFillColor( 0.75, 0.95, 1 )
+    	closeButton:setFillColor(0)
 		
 		local function closeRecords()
 			display.remove(closeButton)
 			display.remove(highScoresHeader)
-			display.remove(testBackground)
+			display.remove(background)
 
 			for i = 1, 10 do
 				if (tempTable[i]) then
@@ -113,9 +125,61 @@ function scene:create( event )
 	--Find the choose level button
 	chooseLevel = ui:findObject( "chooseLevel" )
 	function chooseLevel:tap()
-		fx.fadeOut( function()
-				composer.gotoScene( "scenes.game", { params = {} } )
-			end )
+
+		local levelButtons = {}
+		local background = display.newImageRect( sceneGroup, "scenes/main_menu/ui/backgroundColor.png", 3000, 2500 )
+		local chooseLevelHeader = display.newText( sceneGroup, "Choose level", display.contentCenterX, 100, font, 44 )
+		chooseLevelHeader:setFillColor(0)
+
+		
+		local function startLevel()
+
+			for i = 1, #levelStatuses do
+				if (string.match(levelButtons[i].text, "UNLOCKED")) then
+
+					fx.fadeOut( function()
+						composer.gotoScene( "scenes.game", { params = { map = "scenes/game/levels/level" .. i .. ".json"} } )
+					end )
+
+					print("BUTTONS TEXT" .. i .. " - ", levelButtons[i].text)
+				end
+			end
+		end
+
+		for i = 1, #levelStatuses do
+
+			levelButtons[i] = display.newText( sceneGroup, "Level " .. i, display.contentCenterX, 100 + i * 90, font, 44 )
+
+			if (levelStatuses[i].level == 0) then
+				levelButtons[i]:setFillColor(0.65, 0.65, 0.65)
+				levelButtons[i].text = "Level " .. i .. " BLOCKED"
+			else
+				levelButtons[i].text = "Level " .. i .. " UNLOCKED"
+				levelButtons[i]:setFillColor(0)
+				levelButtons[i]:addEventListener("tap", startLevel)
+			end
+		end
+
+		closeButton = display.newText( sceneGroup, "Close", display.contentCenterX, 710, font, 44 )
+    	closeButton:setFillColor(0)
+		
+		local function closeLevels()
+			display.remove(closeButton)
+			display.remove(chooseLevelHeader)
+			display.remove(background)
+
+			for i = 1, #levelStatuses do
+				levelButtons[i]:removeEventListener("tap", startLevel)
+				display.remove(levelButtons[i]);
+			end
+		end
+
+		closeButton:addEventListener("tap", closeLevels)
+
+		--fx.fadeOut( function()
+				--composer.gotoScene( "scenes.game", { params = { map = "scenes/game/levels/level1.json"} } )
+			--end )
+
 	end
 	fx.breath(chooseLevel)
 
