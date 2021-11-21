@@ -1,12 +1,33 @@
-
 -- Extends an object to load a new map
+
+-- Libs
+local json = require( "json" )
+local fx = require( "com.ponywolf.ponyfx" )
 
 -- Define module
 local M = {}
 
+local levelStatuses = {}
 local composer = require( "composer" )
+local filePath = system.pathForFile( "levelStatuses.json", system.DocumentsDirectory )
 
-local fx = require( "com.ponywolf.ponyfx" )
+function loadLevelStatuses()
+
+	local file = io.open( filePath, "r" )
+
+	if file then
+		local contents = file:read( "*a" )
+		io.close( file )
+		levelStatuses = json.decode( contents )
+
+		print("Level 2 status", levelStatuses.level2)
+	end
+
+end
+
+function changeLevelStatus()
+
+end
 
 function M.new( instance )
 
@@ -29,12 +50,14 @@ function M.new( instance )
 			other.isDead = true
 			other.linearDamping = 8
 			audio.play( sounds.door )
+
+			loadLevelStatuses()
 			
 			self.fill.effect = "filter.exposure"
 
 			transition.to( self.fill.effect, { time = 666, exposure = -5, onComplete = function()
 				fx.fadeOut( function()
-					print("SELF.MAP value - ", self.map)
+					print("SELF.MAP (NEXT LEVEL) value - ", self.map)
 					composer.gotoScene( "scenes.refresh", { params = { map = self.map, score = scene.score:get() } } )
 				end )
 			end } )
