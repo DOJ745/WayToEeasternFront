@@ -48,7 +48,6 @@ end
 
 local backupLevelStatuses = loadLevelStatuses()
 
-
 -- This function is called when scene is created
 function scene:create( event )
 

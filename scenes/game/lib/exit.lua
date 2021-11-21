@@ -32,24 +32,6 @@ function preLoadLevelStatuses()
 	return preLevelStatuses
 end
 
-function loadLevelStatuses()
-
-	local file = io.open( filePath, "r" )
-
-	if file then
-		local contents = file:read( "*a" )
-		io.close( file )
-		levelStatuses = json.decode( contents )
-
-		print("LENGTH - ", #levelStatuses)
-		for i = 1, #levelStatuses do
-			print("Level " .. i .. " status - ", levelStatuses[i].level)
-		end
-
-	end
-
-end
-
 function changeLevelStatus(levelName)
 
 	local file = io.open( filePath, "w" )
@@ -89,8 +71,6 @@ function M.new( instance )
 			other.isDead = true
 			other.linearDamping = 8
 			audio.play( sounds.door )
-
-			--loadLevelStatuses()
 
 			if (string.match(self.map, "level1")) then
 				changeLevelStatus("level1")
