@@ -11,7 +11,6 @@ local ui, backgroundMusic, start
 local font = "scenes/game/font/Special Elite.ttf"
 local filePath = system.pathForFile( "levelStatuses.json", system.DocumentsDirectory )
 
-
 -- Create a new Composer scene
 local scene = composer.newScene()
 
@@ -47,7 +46,7 @@ function loadLevelStatuses()
 	return levelStatuses
 end
 
---local TEST = loadLevelStatuses()
+local backupLevelStatuses = loadLevelStatuses()
 
 
 -- This function is called when scene is created
@@ -55,7 +54,7 @@ function scene:create( event )
 
 	local sceneGroup = self.view  -- Add scene display objects to this group
 
-	TEST = loadLevelStatuses()
+	backupLevelStatuses = loadLevelStatuses()
 
 	-- stream music
 	backgroundMusic = audio.loadStream( "scenes/main_menu/sfx/main_menu_music.mp3" )
@@ -137,7 +136,10 @@ function scene:create( event )
 
 		local levelStatuses = loadLevelStatuses()
 
-		if (levelStatuses == nil) then levelStatuses = TEST end
+		if (levelStatuses == nil) then 
+			print("WARNING! Use backup data about level")
+			levelStatuses = TEST 
+		end
 
 		local levelButtons = {}
 		local background = display.newImageRect( sceneGroup, "scenes/main_menu/ui/backgroundColor.png", 3000, 2500 )
@@ -218,7 +220,7 @@ function scene:show( event )
 		-- add enterFrame listener
 		Runtime:addEventListener( "enterFrame", enterFrame )
 		
-		TEST = loadLevelStatuses()
+		backupLevelStatuses = loadLevelStatuses()
 
 	elseif ( phase == "did" ) then
 
@@ -226,8 +228,6 @@ function scene:show( event )
 		records:addEventListener("tap")
 		chooseLevel:addEventListener("tap")
 		exit:addEventListener("tap")
-
-		--TEST = loadLevelStatuses()
 
 		timer.performWithDelay( 10, function()
 			audio.play( backgroundMusic, { loops = -1, channel = 1 } )
@@ -249,17 +249,13 @@ function scene:hide( event )
 
 		audio.fadeOut( { channel = 1, time = 1500 } )
 
-		--TEST = loadLevelStatuses()
-
 	elseif ( phase == "did" ) then
 		Runtime:removeEventListener( "enterFrame", enterFrame )
-		--TEST = loadLevelStatuses()
 	end
 end
 
 -- This function is called when scene is destroyed
 function scene:destroy( event )
-	--TEST = loadLevelStatuses()
 	audio.stop()  -- Stop all audio
 	audio.dispose(backroundMusic)  -- Release music handle
 	Runtime:removeEventListener("key", key)

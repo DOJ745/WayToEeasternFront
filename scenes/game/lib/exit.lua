@@ -14,22 +14,22 @@ local filePath = system.pathForFile( "levelStatuses.json", system.DocumentsDirec
 
 function preLoadLevelStatuses()
 
-	local TESTlevelStatuses
+	local preLevelStatuses
 	local file = io.open( filePath, "r" )
 
 	if file then
 		local contents = file:read( "*a" )
 		io.close( file )
-		TESTlevelStatuses = json.decode( contents )
+		preLevelStatuses = json.decode( contents )
 
-		print("LENGTH - ", #TESTlevelStatuses)
-		for i = 1, #TESTlevelStatuses do
-			print("Level " .. i .. " status - ", TESTlevelStatuses[i].level)
+		print("LENGTH - ", #preLevelStatuses)
+		for i = 1, #preLevelStatuses do
+			print("Level " .. i .. " status - ", preLevelStatuses[i].level)
 		end
 
 	end
 
-	return TESTlevelStatuses
+	return preLevelStatuses
 end
 
 function loadLevelStatuses()

@@ -33,23 +33,6 @@
                  "y":1440
                 }, 
                 {
-                 "height":112,
-                 "id":20,
-                 "name":"levelStatus",
-                 "properties":[
-                        {
-                         "name":"isOpened",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":158,
-                 "x":-541,
-                 "y":677.333333333333
-                }, 
-                {
                  "height":105,
                  "id":21,
                  "name":"levelMusic",

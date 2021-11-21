@@ -72,12 +72,6 @@ function scene:create(event)
 		print("Property 'music' - ", soundManager.music)
 	end
 
-	levelStatus = map:findObject("levelStatus")
-	if (levelStatus ~= nil ) then
-		print("Found level status!")
-		print("Property 'isOpened' - " .. tostring(levelStatus.isOpened))
-	end
-
 	-- Add our scoring module
 	local coin = display.newImageRect(sceneGroup, "scenes/game/img/coin.png", 64, 64 )
 
