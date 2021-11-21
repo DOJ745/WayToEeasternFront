@@ -109,7 +109,7 @@ function M.new( instance, options )
 			scene.score:saveScore()
 			
 			fx.fadeOut( function()
-				composer.gotoScene( "scenes.death", { params = { } } )
+				composer.gotoScene( "scenes.death", { params = { map = self.filename } } )
 			end, 1500, 1000 )
 
 			instance.isDead = true
@@ -130,7 +130,7 @@ function M.new( instance, options )
 		local phase = event.phase
 		local other = event.other
 
-		local y1, y2 = self.y + 30, other.y - ( other.type == "enemy" and 25 or other.height / 2 )
+		local y1, y2 = self.y + 30, other.y - ( other.type == "enemy"  and 25 or other.height / 2 )
 		local vx, vy = self:getLinearVelocity()
 
 		if phase == "began" then

@@ -2,13 +2,15 @@
 local composer = require( "composer" )
 local fx = require( "com.ponywolf.ponyfx" )
 local tiled = require( "com.ponywolf.ponytiled" )
+local exiting = require( "scenes.game.lib.exit" )
 local scoring = require( "scenes.game.lib.score" )
 local json = require( "json" )
 
 -- Variables local to scene
-local ui, backgroundMusic, start, levelStatuses
+local ui, backgroundMusic, start
 local font = "scenes/game/font/Special Elite.ttf"
 local filePath = system.pathForFile( "levelStatuses.json", system.DocumentsDirectory )
+
 
 -- Create a new Composer scene
 local scene = composer.newScene()
@@ -40,13 +42,18 @@ function loadLevelStatuses()
 
 	end
 
+	return levelStatuses
 end
+
+local TEST = loadLevelStatuses()
 
 
 -- This function is called when scene is created
 function scene:create( event )
 
 	local sceneGroup = self.view  -- Add scene display objects to this group
+
+	TEST = loadLevelStatuses()
 
 	-- stream music
 	backgroundMusic = audio.loadStream( "scenes/main_menu/sfx/main_menu_music.mp3" )
@@ -56,7 +63,7 @@ function scene:create( event )
 	ui = tiled.new(uiData, "scenes/main_menu/ui")
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth / 2, display.contentCenterY - ui.designedHeight / 2
 
-	loadLevelStatuses()
+	--loadLevelStatuses()
 
 	scene.score = scoring.new( { score = event.params.score } )
 	local score = scene.score
@@ -101,11 +108,12 @@ function scene:create( event )
     	end
 
 
-		closeButton = display.newText( sceneGroup, "Close", display.contentCenterX, 710, font, 44 )
-    	closeButton:setFillColor(0)
+		closeRecordsButton = display.newText( sceneGroup, "Close", display.contentCenterX, 710, font, 44 )
+    	closeRecordsButton:setFillColor(0)
 		
 		local function closeRecords()
-			display.remove(closeButton)
+			closeRecordsButton:removeEventListener("tap", closeRecords)
+			display.remove(closeRecordsButton)
 			display.remove(highScoresHeader)
 			display.remove(background)
 
@@ -117,7 +125,7 @@ function scene:create( event )
 			end
 		end
 
-		closeButton:addEventListener("tap", closeRecords)
+		closeRecordsButton:addEventListener("tap", closeRecords)
 	end
 
 	fx.breath(records)
@@ -126,12 +134,15 @@ function scene:create( event )
 	chooseLevel = ui:findObject( "chooseLevel" )
 	function chooseLevel:tap()
 
+		local levelStatuses = loadLevelStatuses()
+
+		if (levelStatuses == nil) then levelStatuses = TEST end
+
 		local levelButtons = {}
 		local background = display.newImageRect( sceneGroup, "scenes/main_menu/ui/backgroundColor.png", 3000, 2500 )
 		local chooseLevelHeader = display.newText( sceneGroup, "Choose level", display.contentCenterX, 100, font, 44 )
 		chooseLevelHeader:setFillColor(0)
 
-		
 		local function startLevel()
 
 			for i = 1, #levelStatuses do
@@ -141,7 +152,6 @@ function scene:create( event )
 						composer.gotoScene( "scenes.game", { params = { map = "scenes/game/levels/level" .. i .. ".json"} } )
 					end )
 
-					print("BUTTONS TEXT" .. i .. " - ", levelButtons[i].text)
 				end
 			end
 		end
@@ -160,26 +170,22 @@ function scene:create( event )
 			end
 		end
 
-		closeButton = display.newText( sceneGroup, "Close", display.contentCenterX, 710, font, 44 )
-    	closeButton:setFillColor(0)
+		closeLevelsButton = display.newText( sceneGroup, "Close", display.contentCenterX, 710, font, 44 )
+    	closeLevelsButton:setFillColor(0)
 		
 		local function closeLevels()
-			display.remove(closeButton)
+			closeLevelsButton:removeEventListener("tap", closeLevels)
+			display.remove(closeLevelsButton)
 			display.remove(chooseLevelHeader)
 			display.remove(background)
 
 			for i = 1, #levelStatuses do
 				levelButtons[i]:removeEventListener("tap", startLevel)
-				display.remove(levelButtons[i]);
+				display.remove(levelButtons[i])
 			end
 		end
 
-		closeButton:addEventListener("tap", closeLevels)
-
-		--fx.fadeOut( function()
-				--composer.gotoScene( "scenes.game", { params = { map = "scenes/game/levels/level1.json"} } )
-			--end )
-
+		closeLevelsButton:addEventListener("tap", closeLevels)
 	end
 	fx.breath(chooseLevel)
 
@@ -210,6 +216,8 @@ function scene:show( event )
 		fx.fadeIn()
 		-- add enterFrame listener
 		Runtime:addEventListener( "enterFrame", enterFrame )
+		
+		TEST = loadLevelStatuses()
 
 	elseif ( phase == "did" ) then
 
@@ -217,6 +225,8 @@ function scene:show( event )
 		records:addEventListener("tap")
 		chooseLevel:addEventListener("tap")
 		exit:addEventListener("tap")
+
+		TEST = loadLevelStatuses()
 
 		timer.performWithDelay( 10, function()
 			audio.play( backgroundMusic, { loops = -1, channel = 1 } )
@@ -230,15 +240,25 @@ function scene:hide( event )
 
 	local phase = event.phase
 	if ( phase == "will" ) then
-		start:removeEventListener( "tap" )
+
+		start:removeEventListener("tap")
+		records:removeEventListener("tap")
+		chooseLevel:removeEventListener("tap")
+		exit:removeEventListener("tap")
+
 		audio.fadeOut( { channel = 1, time = 1500 } )
+
+		--TEST = loadLevelStatuses()
+
 	elseif ( phase == "did" ) then
 		Runtime:removeEventListener( "enterFrame", enterFrame )
+		--TEST = loadLevelStatuses()
 	end
 end
 
 -- This function is called when scene is destroyed
 function scene:destroy( event )
+	--TEST = loadLevelStatuses()
 	audio.stop()  -- Stop all audio
 	audio.dispose(backroundMusic)  -- Release music handle
 	Runtime:removeEventListener("key", key)

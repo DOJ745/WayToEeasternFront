@@ -174,7 +174,6 @@ end
 
 -- This function is called when scene is destroyed
 function scene:destroy( event )
-
 	audio.stop()  -- Stop all audio
 	for s, v in pairs( self.sounds ) do  -- Release all audio handles
 		audio.dispose( v )

@@ -18,6 +18,6 @@ function scene:show( event )
 	end
 end
 
-scene:addEventListener( "show", scene )
+scene:addEventListener("show", scene)
 
 return scene
