@@ -7,30 +7,12 @@ local fx = require( "com.ponywolf.ponyfx" )
 -- Define module
 local M = {}
 
-local levelStatuses
+local levelStatuses = {}
 local composer = require( "composer" )
 
 local filePath = system.pathForFile( "levelStatuses.json", system.DocumentsDirectory )
 
-function loadLevelStatuses()
-
-	local file = io.open( filePath, "r" )
-
-	if file then
-		local contents = file:read( "*a" )
-		io.close( file )
-		levelStatuses = json.decode( contents )
-
-		print("LENGTH - ", #levelStatuses)
-		for i = 1, #levelStatuses do
-			print("Level " .. i .. " status - ", levelStatuses[i].level)
-		end
-
-	end
-
-end
-
-function TESTloadLevelStatuses()
+function preLoadLevelStatuses()
 
 	local TESTlevelStatuses
 	local file = io.open( filePath, "r" )
@@ -50,11 +32,28 @@ function TESTloadLevelStatuses()
 	return TESTlevelStatuses
 end
 
+function loadLevelStatuses()
+
+	local file = io.open( filePath, "r" )
+
+	if file then
+		local contents = file:read( "*a" )
+		io.close( file )
+		levelStatuses = json.decode( contents )
+
+		print("LENGTH - ", #levelStatuses)
+		for i = 1, #levelStatuses do
+			print("Level " .. i .. " status - ", levelStatuses[i].level)
+		end
+
+	end
+
+end
+
 function changeLevelStatus(levelName)
 
 	local file = io.open( filePath, "w" )
-
-	if (file) then
+	if file then
 
 		if levelName == "level1" then
 			levelStatuses[1].level = 1
@@ -67,6 +66,8 @@ function changeLevelStatus(levelName)
 	end
 end
 
+levelStatuses = preLoadLevelStatuses()
+
 function M.new( instance )
 
 	if not instance then error( "ERROR: Expected display object" ) end
@@ -75,10 +76,6 @@ function M.new( instance )
 	local scene = composer.getScene( composer.getSceneName("current") )
 	print("CURRENT EXIT SCENE - ", composer.getSceneName("current"))
 	local sounds = scene.sounds
-
-	local testLevels = TESTloadLevelStatuses()
-
-	function exit:getLevelStatuses() return testLevels end
   
 	if not instance.bodyType then
 		physics.addBody( instance, "static", { isSensor = true } )
@@ -93,7 +90,7 @@ function M.new( instance )
 			other.linearDamping = 8
 			audio.play( sounds.door )
 
-			loadLevelStatuses()
+			--loadLevelStatuses()
 
 			if (string.match(self.map, "level1")) then
 				changeLevelStatus("level1")

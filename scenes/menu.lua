@@ -28,7 +28,9 @@ end
 
 function loadLevelStatuses()
 
+	local levelStatuses = {}
 	local file = io.open( filePath, "r" )
+
 
 	if file then
 		local contents = file:read( "*a" )
@@ -45,7 +47,7 @@ function loadLevelStatuses()
 	return levelStatuses
 end
 
-local TEST = loadLevelStatuses()
+--local TEST = loadLevelStatuses()
 
 
 -- This function is called when scene is created
@@ -63,7 +65,6 @@ function scene:create( event )
 	ui = tiled.new(uiData, "scenes/main_menu/ui")
 	ui.x, ui.y = display.contentCenterX - ui.designedWidth / 2, display.contentCenterY - ui.designedHeight / 2
 
-	--loadLevelStatuses()
 
 	scene.score = scoring.new( { score = event.params.score } )
 	local score = scene.score
@@ -226,7 +227,7 @@ function scene:show( event )
 		chooseLevel:addEventListener("tap")
 		exit:addEventListener("tap")
 
-		TEST = loadLevelStatuses()
+		--TEST = loadLevelStatuses()
 
 		timer.performWithDelay( 10, function()
 			audio.play( backgroundMusic, { loops = -1, channel = 1 } )
