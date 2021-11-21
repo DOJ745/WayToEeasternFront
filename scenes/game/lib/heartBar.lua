@@ -9,8 +9,8 @@ function M.new( options )
 	options = options or {}
 	local image = options.image
 	local max = options.max or 3
-	local spacing = options.spacing or 8
-	local w, h = options.width or 64, options.height or 64
+	local spacing = options.spacing or 12
+	local w, h = options.width or 96, options.height or 96
 
 	-- Create display group to hold visuals
 	local group = display.newGroup()

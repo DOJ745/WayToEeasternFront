@@ -84,13 +84,13 @@ function scene:create(event)
 
 	-- Points positions
 	score.x = display.contentWidth - score.contentWidth / 2 - 35 - coin.width
-	score.y = display.screenOriginY + score.contentHeight / 2 + 34
+	score.y = display.screenOriginY + score.contentHeight / 2 + 35
 
 	-- Add our hearts module
 	heart = heartBar.new()
 
 	heart.x = 48
-	heart.y = display.screenOriginY + heart.contentHeight / 2 + 16
+	heart.y = display.screenOriginY + heart.contentHeight / 2 + 10
 
 	hero.heart = heart
 
