@@ -95,11 +95,6 @@ function M.new( instance, options )
 
 		if self.heart:damage() <= 0 then
 
-			-- We died
-			--fx.fadeOut( function()
-				--composer.gotoScene( "scenes.refresh", { params = { map = self.filename } } )
-			--end, 1500, 1000 )
-
 			print("DEATH SCORE - ", scene.score:get())
 
 			scene.score:loadScores()
