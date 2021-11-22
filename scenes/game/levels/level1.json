@@ -235,60 +235,6 @@
                  "y":1065
                 }, 
                 {
-                 "gid":3,
-                 "height":90,
-                 "id":22,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"cat"
-                        }],
-                 "rotation":0,
-                 "type":"blob",
-                 "visible":true,
-                 "width":100,
-                 "x":1438,
-                 "y":821.333333333333
-                }, 
-                {
-                 "gid":6,
-                 "height":105,
-                 "id":23,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"dog"
-                        }],
-                 "rotation":0,
-                 "type":"blob",
-                 "visible":true,
-                 "width":110,
-                 "x":898.66666666667,
-                 "y":958.666666666667
-                }, 
-                {
-                 "gid":9,
-                 "height":160,
-                 "id":24,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"soldier"
-                        }],
-                 "rotation":0,
-                 "type":"enemySoldier",
-                 "visible":true,
-                 "width":130,
-                 "x":1017,
-                 "y":620
-                }, 
-                {
                  "gid":19,
                  "height":100,
                  "id":25,
@@ -368,6 +314,72 @@
                  "width":130,
                  "x":274,
                  "y":960.666666666667
+                }, 
+                {
+                 "gid":9,
+                 "height":160,
+                 "id":24,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"soldier"
+                        }],
+                 "rotation":0,
+                 "type":"enemySoldier",
+                 "visible":true,
+                 "width":130,
+                 "x":1017,
+                 "y":620
+                }, 
+                {
+                 "gid":6,
+                 "height":105,
+                 "id":23,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"dog"
+                        }],
+                 "rotation":0,
+                 "type":"blob",
+                 "visible":true,
+                 "width":110,
+                 "x":898.66666666667,
+                 "y":958.666666666667
+                }, 
+                {
+                 "gid":3,
+                 "height":90,
+                 "id":22,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"cat"
+                        }],
+                 "rotation":0,
+                 "type":"blob",
+                 "visible":true,
+                 "width":100,
+                 "x":1426,
+                 "y":825.333333333333
+                }, 
+                {
+                 "gid":1,
+                 "height":96,
+                 "id":26,
+                 "name":"",
+                 "rotation":0,
+                 "type":"beer",
+                 "visible":true,
+                 "width":96,
+                 "x":1058,
+                 "y":942
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -456,7 +468,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":26,
+ "nextobjectid":27,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

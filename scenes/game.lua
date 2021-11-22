@@ -29,15 +29,16 @@ function scene:create(event)
 		level1Music = audio.loadSound(sndDir .. "background/level1_music.mp3");
 		level2Music = audio.loadSound(sndDir .. "background/level2_music.mp3");
 
-		door = audio.loadSound( sndDir .. "door.mp3" ),
+		door = audio.loadSound(sndDir .. "door.mp3"),
 
 		hurt = {
-			audio.loadSound( sndDir .. "hurt1.mp3" ),
-			audio.loadSound( sndDir .. "hurt2.mp3" ),
+			audio.loadSound(sndDir .. "hurt1.mp3"),
+			audio.loadSound(sndDir .. "hurt2.mp3"),
 		},
 
-		hit = audio.loadSound( sndDir .. "hit.mp3" ),
-		coin = audio.loadSound( sndDir .. "coin.wav" ),
+		hit = audio.loadSound(sndDir .. "hit.mp3"),
+		coin = audio.loadSound(sndDir .. "coin.wav"),
+		beer = audio.loadSound(sndDir .. "slurp.mp3")
 	}
 
 	-- Start physics before loading map
@@ -59,7 +60,7 @@ function scene:create(event)
 
 	-- Find scripts our enemies and other items
 
-	map:extend("blob", "enemyOfficer", "enemySoldier", "exit", "coin", "spikes")
+	map:extend("blob", "enemyOfficer", "enemySoldier", "exit", "coin", "spikes", "beer")
 
 	-- Find the parallax layer
 	--parallax = map:findLayer("parallax")
@@ -93,6 +94,9 @@ function scene:create(event)
 	heart.y = display.screenOriginY + heart.contentHeight / 2 + 10
 
 	hero.heart = heart
+
+	scene.heartBar = hero.heart
+	local heartBar = heartBar
 
 	-- Touch the hearts to go back to the main menu
 	function heart:tap(event)
