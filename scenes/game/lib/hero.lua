@@ -29,14 +29,16 @@ function M.new( instance, options )
 		{ name = "jump", frames = { 6 } },
 		{ name = "ouch", frames = { 7 } },
 	}
+
 	instance = display.newSprite( parent, sheet, sequenceData )
-	instance.x,instance.y = x, y
+	instance.x = x
+	instance.y = y
 	instance:setSequence( "idle" )
 
 	-- Add physics
 	physics.addBody( instance, "dynamic", { density = 1, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
-	instance.anchorY = 0.51
+	instance.anchorY = 0.50
 
 	-- Keyboard control
 	local max, acceleration, left, right, flip = 310, 2000, 0, 0, 0
