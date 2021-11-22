@@ -353,7 +353,7 @@
                 }, 
                 {
                  "gid":3,
-                 "height":90,
+                 "height":105,
                  "id":22,
                  "name":"",
                  "properties":[
@@ -365,7 +365,7 @@
                  "rotation":0,
                  "type":"blob",
                  "visible":true,
-                 "width":100,
+                 "width":110,
                  "x":1426,
                  "y":825.333333333333
                 }, 

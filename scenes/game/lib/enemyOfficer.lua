@@ -32,9 +32,9 @@ function M.new( instance )
 	instance:play()
 
 	-- Add physics
-	physics.addBody( instance, "dynamic", { radius = 37, density = 3, bounce = 0, friction =  1.0 } )
+	physics.addBody( instance, "dynamic", { density = 1, bounce = 0, friction =  1.0 } )
 	instance.isFixedRotation = true
-	instance.anchorY = 0.77
+	instance.anchorY = 0.51
 	instance.angularDamping = 3
 	instance.isDead = false
 
