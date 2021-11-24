@@ -1050,6 +1050,138 @@
                  "width":300,
                  "x":3171.00166666667,
                  "y":698
+                }, 
+                {
+                 "gid":32,
+                 "height":85,
+                 "id":117,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":433,
+                 "y":1255
+                }, 
+                {
+                 "gid":33,
+                 "height":85,
+                 "id":118,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":695,
+                 "y":1371
+                }, 
+                {
+                 "gid":32,
+                 "height":85,
+                 "id":119,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":926,
+                 "y":1210.16666666667
+                }, 
+                {
+                 "gid":33,
+                 "height":85,
+                 "id":120,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":1188,
+                 "y":1326.16666666667
+                }, 
+                {
+                 "gid":32,
+                 "height":85,
+                 "id":121,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":1496.66666666667,
+                 "y":1195.5
+                }, 
+                {
+                 "gid":33,
+                 "height":85,
+                 "id":122,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":1758.66666666667,
+                 "y":1311.5
+                }, 
+                {
+                 "gid":32,
+                 "height":85,
+                 "id":123,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":2056.66666666667,
+                 "y":1211.5
+                }, 
+                {
+                 "gid":33,
+                 "height":85,
+                 "id":124,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":2318.66666666667,
+                 "y":1327.5
+                }, 
+                {
+                 "gid":33,
+                 "height":85,
+                 "id":125,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":253,
+                 "y":1394.83333333333
+                }, 
+                {
+                 "gid":32,
+                 "height":85,
+                 "id":126,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":126.333333333333,
+                 "y":1176.16666666667
+                }, 
+                {
+                 "gid":33,
+                 "height":85,
+                 "id":127,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":2634.33333333333,
+                 "y":1178.83333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1365,7 +1497,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":116,
+ "nextobjectid":128,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
@@ -1383,7 +1515,7 @@
          "margin":0,
          "name":"obj",
          "spacing":0,
-         "tilecount":30,
+         "tilecount":32,
          "tileheight":512,
          "tiles":[
                 {
@@ -1565,6 +1697,18 @@
                  "image":"meat-store.png",
                  "imageheight":512,
                  "imagewidth":512
+                }, 
+                {
+                 "id":31,
+                 "image":"groundDeco1.png",
+                 "imageheight":85,
+                 "imagewidth":118
+                }, 
+                {
+                 "id":32,
+                 "image":"groundDeco2.png",
+                 "imageheight":85,
+                 "imagewidth":118
                 }],
          "tilewidth":512
         }],
