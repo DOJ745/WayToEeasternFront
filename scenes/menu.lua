@@ -40,7 +40,13 @@ function loadLevelStatuses()
 		for i = 1, #levelStatuses do
 			print("Level " .. i .. " status - ", levelStatuses[i].isOpen)
 		end
-
+	else
+		file = io.open( filePath, "w" )
+		if file then
+			file:write('[{"isOpen":0, "levelNumber":1},{"isOpen":0, "levelNumber":2}]')
+			io.close(file)
+		end
+		
 	end
 
 	return levelStatuses
