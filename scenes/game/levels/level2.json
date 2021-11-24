@@ -32,7 +32,7 @@
                         }],
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":262.736842105263,
                  "x":346.898713450292,
                  "y":1592.39859649123
@@ -1780,7 +1780,7 @@
                         {
                          "name":"map",
                          "type":"string",
-                         "value":""
+                         "value":"scenes\/game\/levels\/final.json"
                         }],
                  "rotation":0,
                  "type":"exit",

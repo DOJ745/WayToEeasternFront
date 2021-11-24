@@ -8,7 +8,7 @@ local json = require( "json" )
 local scoring = require( "scenes.game.lib.score" )
 local heartBar = require( "scenes.game.lib.heartBar" )
 
-local map, hero, heart, parallax, soundManager, levelStatus
+local map, hero, heart, parallax, soundManager, levelStatus, finalButton
 
 local scene = composer.newScene()
 
@@ -29,6 +29,7 @@ function scene:create(event)
 		level0Music = audio.loadSound(sndDir .. "background/level0_music.mp3");
 		level1Music = audio.loadSound(sndDir .. "background/level1_music.mp3");
 		level2Music = audio.loadSound(sndDir .. "background/level2_music.mp3");
+		finalLevelMusic = audio.loadSound(sndDir .. "background/final_music.mp3");
 
 		door = audio.loadSound(sndDir .. "door.mp3"),
 
@@ -99,6 +100,23 @@ function scene:create(event)
 	scene.heartBar = hero.heart
 	local heartBar = heartBar
 
+	if(filename == "scenes/game/levels/final.json") then
+
+		finalButton = map:findObject("exit")
+
+		function finalButton:tap()
+
+			scene.score:loadScores()
+			scene.score:setScore(scene.score:get())
+			scene.score:saveScore()
+
+			native.requestExit()
+		end
+
+		fx.breath(finalButton)
+		finalButton:addEventListener("tap")
+	end
+
 	-- Touch the hearts to go back to the main menu
 	function heart:tap(event)
 		fx.fadeOut( function()
@@ -155,6 +173,10 @@ function scene:show( event )
 
 		if (soundManager.music == "level2") then
 			audio.play( self.sounds.level2Music, { loops = -1, fadein = 750, channel = 15 } )
+		end
+
+		if (soundManager.music == "final") then
+			audio.play( self.sounds.finalLevelMusic, { loops = -1, fadein = 750, channel = 15 } )
 		end
 
 	end
