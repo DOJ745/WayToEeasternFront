@@ -31,7 +31,10 @@ function M.new( instance )
 		if (self.name == "dog") then
 			audio.play(sounds.bark)
 		end
-		--audio.play( sounds.squish )
+		
+		if (self.name == "rat") then
+			audio.play(sounds.rat)
+		end
 
 		self.isFixedRotation = false
 		self.isSensor = true

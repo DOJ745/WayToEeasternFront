@@ -22,9 +22,9 @@ function preLoadLevelStatuses()
 		io.close( file )
 		preLevelStatuses = json.decode( contents )
 
-		print("LENGTH - ", #preLevelStatuses)
+		print("LENGTH of levelStasuses.json(EXIT) - ", #preLevelStatuses)
 		for i = 1, #preLevelStatuses do
-			print("Level " .. i .. " status - ", preLevelStatuses[i].level)
+			print("Level " .. i .. " status - ", preLevelStatuses[i].isOpen)
 		end
 
 	end
@@ -38,9 +38,9 @@ function changeLevelStatus(levelName)
 	if file then
 
 		if levelName == "level1" then
-			levelStatuses[1].level = 1
+			levelStatuses[1].isOpen = 1
 		elseif levelName == "level2" then
-			levelStatuses[2].level = 1
+			levelStatuses[2].isOpen = 1
 		end
 		
 		file:write( json.encode( levelStatuses ) )

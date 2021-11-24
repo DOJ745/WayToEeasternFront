@@ -36,9 +36,9 @@ function loadLevelStatuses()
 		io.close( file )
 		levelStatuses = json.decode( contents )
 
-		print("LENGTH - ", #levelStatuses)
+		print("LENGTH of levelStasuses.json(MENU) - ", #levelStatuses)
 		for i = 1, #levelStatuses do
-			print("Level " .. i .. " status - ", levelStatuses[i].level)
+			print("Level " .. i .. " status - ", levelStatuses[i].isOpen)
 		end
 
 	end
@@ -145,30 +145,32 @@ function scene:create( event )
 		local chooseLevelHeader = display.newText( sceneGroup, "Choose level", display.contentCenterX, 100, font, 44 )
 		chooseLevelHeader:setFillColor(0)
 
-		local function startLevel()
+		local function startLevel(levelNumber)
 
-			for i = 1, #levelStatuses do
-				if (string.match(levelButtons[i].text, "UNLOCKED")) then
+			return function(event)
 
-					fx.fadeOut( function()
-						composer.gotoScene( "scenes.game", { params = { map = "scenes/game/levels/level" .. i .. ".json"} } )
-					end )
+                print("TESTING arg things - ", event.name, event.phase, levelNumber)
 
-				end
-			end
+				fx.fadeOut( function()
+					composer.gotoScene( "scenes.game", { params = { 
+						map = "scenes/game/levels/level" .. levelNumber .. ".json"} 
+					} 
+				) end)
+
+        	end
 		end
 
 		for i = 1, #levelStatuses do
 
 			levelButtons[i] = display.newText( sceneGroup, "Level " .. i, display.contentCenterX, 100 + i * 90, font, 44 )
 
-			if (levelStatuses[i].level == 0) then
+			if (levelStatuses[i].isOpen == 0) then
 				levelButtons[i]:setFillColor(0.65, 0.65, 0.65)
-				levelButtons[i].text = "Level " .. i .. " BLOCKED"
+				levelButtons[i].text = "Level " .. levelStatuses[i].levelNumber .. " BLOCKED"
 			else
-				levelButtons[i].text = "Level " .. i .. " UNLOCKED"
+				levelButtons[i].text = "Level " .. levelStatuses[i].levelNumber .. " UNLOCKED"
 				levelButtons[i]:setFillColor(0)
-				levelButtons[i]:addEventListener("tap", startLevel)
+				levelButtons[i]:addEventListener("tap",  startLevel(levelStatuses[i].levelNumber))
 			end
 		end
 

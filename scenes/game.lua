@@ -22,6 +22,7 @@ function scene:create(event)
 
 		bark = audio.loadSound(sndDir .. "bark.mp3");
 		meow = audio.loadSound(sndDir .. "meow.mp3");
+		rat = audio.loadSound(sndDir .. "rat.wav");
 
 		enemyDeath = audio.loadSound(sndDir .. "enemyDeath.mp3");
 
