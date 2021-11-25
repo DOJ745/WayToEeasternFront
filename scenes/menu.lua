@@ -32,15 +32,17 @@ function loadLevelStatuses()
 
 
 	if file then
+		print("File was found... Reading from it...")
 		local contents = file:read( "*a" )
 		io.close( file )
 		levelStatuses = json.decode( contents )
 
 		print("LENGTH of levelStasuses.json(MENU) - ", #levelStatuses)
 		for i = 1, #levelStatuses do
-			print("Level " .. i .. " status - ", levelStatuses[i].isOpen)
+			print("Level " .. levelStatuses[i].levelNumber .. " status - ", levelStatuses[i].isOpen)
 		end
 	else
+		print("Where was no file... Creating it...")
 		file = io.open( filePath, "w" )
 		if file then
 			file:write('[{"isOpen":0, "levelNumber":1},{"isOpen":0, "levelNumber":2}]')
@@ -143,7 +145,7 @@ function scene:create( event )
 
 		if (levelStatuses == nil) then 
 			print("WARNING! Use backup data about level")
-			levelStatuses = TEST 
+			levelStatuses = backupLevelStatuses 
 		end
 
 		local levelButtons = {}
