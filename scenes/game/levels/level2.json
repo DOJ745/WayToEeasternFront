@@ -1871,6 +1871,11 @@
                          "value":"static"
                         }, 
                         {
+                         "name":"floating",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"friction",
                          "type":"float",
                          "value":1
@@ -2007,6 +2012,11 @@
                          "name":"bodyType",
                          "type":"string",
                          "value":"static"
+                        }, 
+                        {
+                         "name":"floating",
+                         "type":"bool",
+                         "value":true
                         }, 
                         {
                          "name":"friction",
